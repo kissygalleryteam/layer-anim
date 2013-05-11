@@ -23,9 +23,9 @@
 * 定义各浏览器的优雅降级
 * 良好的兼容性（如：支持IE 6）
 
-LayerAnim基于[GreenSock JS](www.greensock.com)动画库开发。GreenSock是一个功能强大、体积小巧、性能极高的动画平台，其使用时间线（Timeline）来精确控制动画的播放、跳转、停止等，它同时提供Flash和JS两个版本的动画库。
+LayerAnim基于[GreenSock JS](http://www.greensock.com)动画库开发。GreenSock是一个功能强大、体积小巧、性能极高的动画平台，其使用时间线（Timeline）来精确控制动画的播放、跳转、停止等，它同时提供Flash和JS两个版本的动画库。
 
-感兴趣的同学可以查看：[性能测试](www.greensock.com/js/speed.html)，其中包含了当前流行的动画库性能比较。
+感兴趣的同学可以查看：[性能测试](http://www.greensock.com/js/speed.html)，其中包含了当前流行的动画库性能比较。
 
 
 使用手册及开发接口

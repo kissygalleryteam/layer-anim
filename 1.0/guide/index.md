@@ -5,7 +5,7 @@
 
 所谓“分层动画”，是指由多个动画组成，相互间有一定播放次序的动画。这些动画可以以顺序或逆序，或延迟播放，形成一个动画序列。
 
-layer-anim是一个javascript动画组件，基于[GreenSock JS](www.greensock.com)动画库开发。
+layer-anim是一个javascript动画组件，基于[GreenSock JS](http://www.greensock.com)动画库开发。
 
 ## 功能（Features）
 
@@ -69,7 +69,7 @@ KISSY.use("gallery/layer-anim/1.0/", function(S, LayerAnim)
 
 调用run()方法播放该动画，可以看到DOM节点从坐标(0, 0)移动到了坐标(200, 200)，动画时长为1秒。
 
-**注意**：动画时长```duration```的单位为：**秒**。
+**注意**：动画时长```duration```的单位为“秒”。
 
 ### 动画回放控制
 
@@ -188,7 +188,7 @@ KISSY.use("gallery/layer-anim/1.0/", function(S, LayerAnim)
 - "Expo.easeIn"：动画起始时，显示缓动效果（加速度最强）
 - "Expo.easeOut"：动画结束时，显示缓动效果（加速度最强）
 - "Expo.easeInOut"：动画起始和结束时，都显示缓动效果，即Power5.easeIn + Power5.easeOut
-- "SteppedEase"：如果希望将动画分为固定的几步完成，可以使用SteppedEase。例如：```easing: "SteppedEase.config(5)"```，让动画分为5步完成，每步的CSS值将根据```from```或```to```值计算
+- "SteppedEase"：如果希望将动画分为固定的几步完成，可以使用SteppedEase。例如：```easing: "SteppedEase.config(5)"```，让动画分为5步完成，每步的CSS值将根据```from```和```to```值计算
 
 ### 延迟播放动画（```delay```参数）
 
@@ -212,13 +212,13 @@ KISSY.use("gallery/layer-anim/1.0/", function(S, LayerAnim)
 });
 ```
 
-上面的例子中，动画延迟了半秒才开始播放。
+上面的例子设置动画延迟半秒再开始播放。
 
 ### 浏览器降级设置（```degrade```参数）
 
 某些浏览器（如IE 6）中，复杂动画的显示效果可能不尽如意，需要优雅降级。这时，可通过```degrade```参数，设置动画在特定浏览器下不显示。
 
-**注意**：“**不显示**”仅仅指不显示动画。为了确保所有浏览器下的样式一致，动画DOM节点的CSS属性会立即设置为结束值。
+**注意**：“不显示”仅仅指不显示动画。为了确保所有浏览器下的样式一致，动画DOM节点的CSS属性会立即设置为结束值。
 
 例如，设置IE 8以上浏览器（包括IE 8）才显示动画，代码如下：
 
@@ -384,7 +384,7 @@ KISSY.use("gallery/layer-anim/1.0/, dom", function(S, LayerAnim, DOM)
 
 如果多个动画同时作用于同一个DOM节点，其设置的CSS属性相互冲突时，就需要设置```overwrite```参数，来处理冲突。参数取值如下：
 
-- "auto"：分析当前正在播放的动画，如果发现有CSS值冲突，则覆盖该CSS值。尚未播放的动画不受影响。该值为默认值。
+- "auto"：分析当前正在播放的动画，如果发现有CSS值冲突，则覆盖该CSS值。尚未播放的动画不受影响。该值为默认值
 - "all"：停止与该DOM节点相关的所有动画（包括未播放的动画）
 - "none"：不处理冲突
 
