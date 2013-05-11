@@ -1,0 +1,13 @@
+{
+    "name": "layer-anim",
+    "version": "1.0",
+    "desc": "分层动画组件",
+    "cover": "",
+    "author": {
+        "name": "agu.hc",
+        "email": "blueaqua2000@gmail.com",
+        "page": "https://github.com/blueaqua2000"
+    },
+    "type": "kissy-pie",
+    "type-url": "http://abc.alibaba-inc.com/r/kissy-pie"
+}

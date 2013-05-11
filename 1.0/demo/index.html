@@ -1,0 +1,244 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>LayerAnim Demo</title>
+    <link rel="stylesheet" href="index.css"/>
+    <script src="http://a.tbcdn.cn/s/kissy/1.3.0/kissy-min.js" charset="utf-8"></script>
+    <script>
+        var S = KISSY;
+        if (S.Config.debug)
+        {
+            var srcPath = "../../../";
+            S.config({
+                packages:[
+                    {
+                        name:"gallery",
+                        path:srcPath,
+                        charset:"utf-8",
+//                        debug: true,
+                        ignorePackageNameInUri:true
+                    }
+                ]
+            });
+        }
+    </script>
+</head>
+
+<body>
+    <h1>分层动画组件（LayerAnim）</h1>
+    <div>
+        <h2>动画播放控制</h2>
+        <div id="J-demo-single-section">
+            <div class="d-single">
+                <span id="J-demo-single">LayerAnim is so powerful! If it cannot do, who can!</span>
+            </div>
+            <div class="d-control">
+                <button id="J-demo-single-play" class="d-btn">播放</button>
+                <button id="J-demo-single-pause" class="d-btn">暂停</button>
+                <button id="J-demo-single-reverse" class="d-btn">反向播放</button>
+                <button id="J-demo-single-replay" class="d-btn">重新播放</button>
+            </div>
+    
+            <script>
+                KISSY.use('gallery/layer-anim/1.0/, dom, event', function(S, LayerAnim, DOM, Event)
+                {
+                    // 动画配置参数
+                    var config =
+                    {
+                        node: "#J-demo-single",  // 动画DOM节点，可使用“选择符”（支持的选择符请参考KISSY DOM文档）或原生DOM节点
+                        from:  // 动画起始值，即动画初始时的CSS属性值，可同时配置多个CSS属性，支持CSS 3属性
+                        {
+                            top: 50,
+                            textShadow: "0 0 0 #000, 0 0 0 #000",
+                            opacity: 0
+                        },
+                        to:  // 动画结束值，即动画结束时的CSS属性值。LayerAnim会自动计算并设置从初始到结束的CSS属性值
+                        {
+                            top: 12,
+                            textShadow: "0 0 40px #BEE3C4, 0 0 40px #BEE3C4",
+                            opacity: 1
+                        },
+                        easing: "Power1.easeOut",  // 平滑过渡效果，取值详见使用手册
+                        duration: 1.8  // 动画时长（单位：秒）
+                    };
+                    // 创建并播放动画
+                    var anim = new LayerAnim(config).resume();
+                    // 回放控制
+                    // 播放
+                    Event.on(DOM.get("#J-demo-single-play"), "click", function(e)
+                    {
+                        anim.run();  // 从当前播放位置继续播放动画，直至结束。如果动画已经播放完毕，则再调用该方法没有任何效果
+                    });
+                    // 暂停
+                    Event.on(DOM.get("#J-demo-single-pause"), "click", function(e)
+                    {
+                        anim.pause();  // 暂停动画的播放。暂停后，可再次点击“播放”按钮，继续播放动画
+                    });
+                    // 反向播放
+                    Event.on(DOM.get("#J-demo-single-reverse"), "click", function(e)
+                    {
+                        anim.runReverse();  // 从当前播放位置反向播放动画，直至动画起始位置
+                    });
+                    // 重新播放
+                    Event.on(DOM.get("#J-demo-single-replay"), "click", function(e)
+                    {
+                        anim.rerun();  // 从头开始播放动画
+                    });
+                });
+            </script>
+        </div>
+        <p>源代码及说明如下：</p>
+        <pre id="J-demo-single-code"></pre>
+        <script type="text/javascript">
+            S.DOM.text("#J-demo-single-code", S.DOM.html("#J-demo-single-section"));
+        </script>
+    </div>
+    
+    <div>
+        <h2>同时播放一组动画</h2>
+        <div id="J-demo-simul-section">
+            <div id="J-demo-simul" class="d-simul">
+                <span>L</span>
+                <span>a</span>
+                <span>y</span>
+                <span>e</span>
+                <span>r</span>
+                <span>A</span>
+                <span>n</span>
+                <span>i</span>
+                <span>m</span>
+            </div>
+            <div class="d-control">
+                <button id="J-demo-simul-play" class="d-btn">重新播放</button>
+            </div>
+    
+            <script>
+                KISSY.use('gallery/layer-anim/1.0/, dom, event', function(S, LayerAnim, DOM, Event)
+                {
+                    var config = [], nodes = DOM.query("#J-demo-simul span"), i = 0, size = nodes.length, anim;
+                    // 创建一组动画（每个字母一个动画）
+                    for (; i < size; ++ i)
+                    {
+                        // 动画配置参数
+                        config[i] =
+                        {
+                            node: nodes[i],  // 动画DOM节点，可使用“选择符”（支持的选择符请参考KISSY DOM文档）或原生DOM节点
+                            from:  // 动画起始值，即动画初始时的CSS属性值。由于此处未设置动画结束值（to），动画会从初始值开始，直到CSS属性的当前值为止
+                            {
+                                left: Math.random() * 680 - 280,
+                                top: Math.random() * 600 - 280,
+                                rotation: Math.random() * 2000,
+                                opacity: 0
+                            },
+                            delay: i * 0.2,  // 延迟播放时间（单位：秒）。虽然所有动画是并行播放的，但由于设置了延迟播放时间，所以实际上，这些动画并非同时开始播放
+                            easing: "Back.easeOut",  // 平滑过渡效果，取值详见使用手册
+                            duration: 2  // 动画时长（单位：秒）
+                        };
+                    }
+                    // 创建并播放动画
+                    anim = new LayerAnim(config).run();
+                    // 回放控制
+                    // 重新播放
+                    Event.on(DOM.get("#J-demo-simul-play"), "click", function(e)
+                    {
+                        anim.rerun();  // 从头开始播放动画
+                    });
+                });
+            </script>
+        </div>
+        <p>示例中，为每个字母分别创建了一个动画，合起来组成一个“分层动画”。源代码及说明如下：</p>
+        <pre id="J-demo-simul-code"></pre>
+        <script type="text/javascript">
+            S.DOM.text("#J-demo-simul-code", S.DOM.html("#J-demo-simul-section"));
+        </script>
+    </div>
+
+    <div>
+        <h2>顺序播放一组动画</h2>
+        <div id="J-demo-seq-section">
+            <div id="J-demo-seq" class="d-seq">
+                <span>run</span>
+                <span>rerun</span>
+                <span>runReverse</span>
+                <span>pause</span>
+                <span>seek</span>
+                <span>......</span>
+                <div>Why not use it now?</div>
+            </div>
+            <div class="d-control">
+                <button id="J-demo-seq-play" class="d-btn">重新播放</button>
+            </div>
+
+            <script>
+                KISSY.use('gallery/layer-anim/1.0/, dom, event', function(S, LayerAnim, DOM, Event)
+                {
+                    var config = [], nodes = DOM.query("#J-demo-seq span"), i = 0, size = nodes.length, anim;
+                    // 创建一组动画（每个<span>一个动画）
+                    for (; i < size; ++ i)
+                    {
+                        // 动画配置参数
+                        config[i] =
+                        {
+                            node: nodes[i],  // 动画DOM节点，可使用“选择符”（支持的选择符请参考KISSY DOM文档）或原生DOM节点
+                            from:  // 动画起始值，即动画初始时的CSS属性值，可同时配置多个CSS属性，支持CSS 3属性
+                            {
+                                scale: 0,
+                                opacity: 0,
+                                autoAlpha: 1  // 特殊配置，用于隐藏动画DOM节点
+                            },
+                            to:  // 动画结束值，即动画结束时的CSS属性值。LayerAnim会自动计算并设置从初始到结束的CSS属性值
+                            {
+                                scale: 1,
+                                opacity: 1,
+                                autoAlpha: 0  // 动画播放完后，自动隐藏（visibility设置为hidden）
+                            },
+                            align: "sequence",  // 顺序播放，即该动画在上一动画播放完毕后才播放。如未设置该参数，则与上一动画同时开始播放
+                            easing: "SlowMo.ease.config(0.25, 0.9)",  // 平滑过渡效果
+                            duration: 0.9  // 动画时长（单位：秒）
+                        };
+                    }
+                    // 最后一个动画（<div>Why not use it now?</div>）
+                    config[i] =
+                    {
+                        node: "#J-demo-seq div",  // DOM节点
+                        from:  // 动画起始值，即动画初始时的CSS属性值，可同时配置多个CSS属性，支持CSS 3属性
+                        {
+                            scale: 0,
+                            opacity: 0,
+                            autoAlpha: 0
+                        },
+                        to:  // 动画结束值，即动画结束时的CSS属性值。LayerAnim会自动计算并设置从初始到结束的CSS属性值
+                        {
+                            scale: 1,
+                            opacity: 1,
+                            autoAlpha: 1
+                        },
+                        degrade:  // 浏览器降级设置
+                        {
+                            ie: 7  // IE 7以上版本才播放该动画（此处未设置其它浏览器的降级配置，因此，其它浏览器不受影响）
+                        },
+                        align: "sequence",  // 顺序播放（即上一动画播放完后播放）
+                        easing: "SlowMo.ease.config(0.25, 0.9)",  // 平滑过渡效果，取值详见使用手册
+                        duration: 0.9  // 动画时长（单位：秒）
+                    };
+                    // 创建并播放动画
+                    anim = new LayerAnim(config).run();
+                    // 回放控制
+                    // 重新播放
+                    Event.on(DOM.get("#J-demo-seq-play"), "click", function(e)
+                    {
+                        anim.rerun();  // 重新播放
+                    });
+                });
+            </script>
+        </div>
+        <p>示例中，所有动画均为顺序播放，即上一动画播放完毕后，才播放下一动画。源代码及说明如下：</p>
+        <pre id="J-demo-seq-code"></pre>
+        <script type="text/javascript">
+            S.DOM.text("#J-demo-seq-code", S.DOM.html("#J-demo-seq-section"));
+        </script>
+    </div>
+
+</body>
+</html>
