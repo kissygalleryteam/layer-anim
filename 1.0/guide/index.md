@@ -159,36 +159,7 @@ KISSY.use("gallery/layer-anim/1.0/", function(S, LayerAnim)
 });
 ```
 
-支持的平滑过渡效果有：
-
-- "Back.easeIn"：动画起始时，显示缩进效果
-- "Back.easeOut"：动画结束时，显示缩进效果
-- "Back.easeInOut"：动画起始和结束时，都显示缩进效果，即Back.easeIn + Back.easeOut
-- "Bounce.easeIn"：动画起始时，显示跳动效果
-- "Bounce.easeOut"：动画结束时，显示跳动效果
-- "Bounce.easeInOut"：动画起始和结束时，都显示跳动效果，即Bounce.easeIn + Bounce.easeOut
-- "Circ.easeIn"：动画起始时，急剧改变运动速度
-- "Circ.easeOut"：动画结束时，急剧改变运动速度
-- "Circ.easeInOut"：动画起始和结束时，都急剧改变运动速度，即Circ.easeIn + Circ.easeOut
-- "Elastic.easeIn"：动画起始时，显示类似橡皮筋的弹跳效果
-- "Elastic.easeOut"：动画结束时，显示类似橡皮筋的弹跳效果
-- "Elastic.easeInOut"：动画起始和结束时，都显示类似橡皮筋的弹跳效果，即Elastic.easeIn + Elastic.easeOut
-- "Power1.easeIn"：动画起始时，显示缓动效果（加速度为线性）
-- "Power1.easeOut"：动画结束时，显示缓动效果（加速度为线性）
-- "Power1.easeInOut"：动画起始和结束时，都显示缓动效果，即Power1.easeIn + Power1.easeOut
-- "Power2.easeIn"：动画起始时，显示缓动效果（加速度稍强）
-- "Power2.easeOut"：动画结束时，显示缓动效果（加速度稍强）
-- "Power2.easeInOut"：动画起始和结束时，都显示缓动效果，即Power2.easeIn + Power2.easeOut
-- "Power3.easeIn"：动画起始时，显示缓动效果（加速度更强）
-- "Power3.easeOut"：动画结束时，显示缓动效果（加速度更强）
-- "Power3.easeInOut"：动画起始和结束时，都显示缓动效果，即Power3.easeIn + Power3.easeOut
-- "Power4.easeIn"：动画起始时，显示缓动效果（加速度极强）
-- "Power4.easeOut"：动画结束时，显示缓动效果（加速度极强）
-- "Power4.easeInOut"：动画起始和结束时，都显示缓动效果，即Power4.easeIn + Power4.easeOut
-- "Expo.easeIn"：动画起始时，显示缓动效果（加速度最强）
-- "Expo.easeOut"：动画结束时，显示缓动效果（加速度最强）
-- "Expo.easeInOut"：动画起始和结束时，都显示缓动效果，即Power5.easeIn + Power5.easeOut
-- "SteppedEase"：如果希望将动画分为固定的几步完成，可以使用SteppedEase。例如：```easing: "SteppedEase.config(5)"```，让动画分为5步完成，每步的CSS值将根据```from```和```to```值计算
+支持的平滑过渡效果可参考“开发接口（API）”中的说明。
 
 ### 延迟播放动画（```delay```参数）
 
@@ -424,6 +395,100 @@ KISSY.use("gallery/layer-anim/1.0/, dom", function(S, LayerAnim, DOM)
 
 ## 开发接口（API）
 
+```javascript
+KISSY.use("gallery/layer-anim/1.0/", function(S, LayerAnim)
+{
+    var config = /* 配置参数 */;
+    new LayerAnim(config);
+});
+```
+
+### 配置参数
+
+- node {String/HTMLNode}
+
+   动画DOM节点，可使用“选择符”（支持的选择符请参考KISSY [DOM选择符](http://docs.kissyui.com/docs/html/api/core/dom/selector.html)）或原生DOM节点
+
+- from {Object}
+
+   动画起始值，即动画初始时的CSS属性值。例如：
+
+```javascript
+{
+    left: 0,
+    top: 0
+}
+```
+
+- to {Object}
+
+   动画结束值，即动画结束时的CSS属性值。```from```与```to```必须设置其一，或同时设置。
+
+- duration {Number}
+
+   动画时长（单位：秒）。
+
+- easing {String} 【可选】
+
+   平滑过渡效果，取值如下：
+
+      * "Back.easeIn"：动画起始时，显示缩进效果
+      * "Back.easeOut"：动画结束时，显示缩进效果
+      * "Back.easeInOut"：动画起始和结束时，都显示缩进效果，即Back.easeIn + Back.easeOut
+      * "Bounce.easeIn"：动画起始时，显示跳动效果
+      * "Bounce.easeOut"：动画结束时，显示跳动效果
+      * "Bounce.easeInOut"：动画起始和结束时，都显示跳动效果，即Bounce.easeIn + Bounce.easeOut
+      * "Circ.easeIn"：动画起始时，急剧改变运动速度
+      * "Circ.easeOut"：动画结束时，急剧改变运动速度
+      * "Circ.easeInOut"：动画起始和结束时，都急剧改变运动速度，即Circ.easeIn + Circ.easeOut
+      * "Elastic.easeIn"：动画起始时，显示类似橡皮筋的弹跳效果
+      * "Elastic.easeOut"：动画结束时，显示类似橡皮筋的弹跳效果
+      * "Elastic.easeInOut"：动画起始和结束时，都显示类似橡皮筋的弹跳效果，即Elastic.easeIn + Elastic.easeOut
+      * "Power1.easeIn"：动画起始时，显示缓动效果（加速度为线性）
+      * "Power1.easeOut"：动画结束时，显示缓动效果（加速度为线性），该值为默认值
+      * "Power1.easeInOut"：动画起始和结束时，都显示缓动效果，即Power1.easeIn + Power1.easeOut
+      * "Power2.easeIn"：动画起始时，显示缓动效果（加速度稍强）
+      * "Power2.easeOut"：动画结束时，显示缓动效果（加速度稍强）
+      * "Power2.easeInOut"：动画起始和结束时，都显示缓动效果，即Power2.easeIn + Power2.easeOut
+      * "Power3.easeIn"：动画起始时，显示缓动效果（加速度更强）
+      * "Power3.easeOut"：动画结束时，显示缓动效果（加速度更强）
+      * "Power3.easeInOut"：动画起始和结束时，都显示缓动效果，即Power3.easeIn + Power3.easeOut
+      * "Power4.easeIn"：动画起始时，显示缓动效果（加速度极强）
+      * "Power4.easeOut"：动画结束时，显示缓动效果（加速度极强）
+      * "Power4.easeInOut"：动画起始和结束时，都显示缓动效果，即Power4.easeIn + Power4.easeOut
+      * "Expo.easeIn"：动画起始时，显示缓动效果（加速度最强）
+      * "Expo.easeOut"：动画结束时，显示缓动效果（加速度最强）
+      * "Expo.easeInOut"：动画起始和结束时，都显示缓动效果，即Power5.easeIn + Power5.easeOut
+      * "SteppedEase"：如果希望将动画分为固定的几步完成，可以使用SteppedEase。例如：```easing: "SteppedEase.config(5)"```，让动画分为5步完成，每步的CSS值将根据```from```和```to```值计算
+
+- delay {Number} 【可选】
+
+   延迟播放时间（单位：秒）。
+
+- degrade {Object} 【可选】
+
+   浏览器降级设置。例如：
+```javascript
+{
+    ie: 7  // IE 8以上（包括IE 8）才显示该动画
+}
+```
+
+- align {String} 【可选】
+
+   播放次序。取值如下：
+
+      * "normal"：与其它动画同时播放。【默认值】
+      * "sequence"：顺序播放，即上一动画播放完再播放该动画。
+
+- overwrite {String}
+
+   当多个动画同时作用于同一个DOM节点，其设置的CSS属性相互冲突时，解决冲突处理方式。取值如下：
+
+      * "auto"：分析当前正在播放的动画，如果发现有CSS值冲突，则覆盖该CSS值。尚未播放的动画不受影响。【默认值】
+      * "all"：停止与该DOM节点相关的所有动画（包括未播放的动画）
+      * "none"：不处理冲突
+
 ### 方法
 
 - run(once)
@@ -432,7 +497,7 @@ KISSY.use("gallery/layer-anim/1.0/, dom", function(S, LayerAnim, DOM)
 
    * 参数：
 
-      once {Boolean}：是否只运行一次，动画播放完后即释放相关资源，以便垃圾回收。[可选参数，默认：false]
+      once {Boolean}：是否只运行一次，动画播放完后即释放相关资源，以便垃圾回收。【可选参数，默认：false】
 
    * 返回值：
 
@@ -476,7 +541,7 @@ KISSY.use("gallery/layer-anim/1.0/, dom", function(S, LayerAnim, DOM)
 
    * 参数：
 
-      reset {Boolean}：是否将动画起始值（from）或结束值（to）重置为当前的CSS值。如果不想从DOM节点的当前值重新播放动画，请设置为false。[可选参数，默认：true]
+      reset {Boolean}：是否将动画起始值（from）或结束值（to）重置为当前的CSS值。如果不想从DOM节点的当前值重新播放动画，请设置为false。【可选参数，默认：true】
 
    * 返回值：
 
@@ -488,7 +553,7 @@ KISSY.use("gallery/layer-anim/1.0/, dom", function(S, LayerAnim, DOM)
 
    * 参数：
 
-      position {Number}：跳转到的时间点，单位：秒。[可选参数，默认：0（起始位置）]
+      position {Number}：跳转到的时间点，单位：秒。【可选参数，默认：0（起始位置）】
 
    * 返回值：
 
