@@ -1,11 +1,11 @@
-分层动画组件（layer-anim）
+分层动画组件（LayerAnim）
 ==========================
 
 （作者：阿古，版本：1.0）
 
 所谓“分层动画”，是指由多个动画组成，相互间有一定播放次序的动画。这些动画可以以顺序或逆序，或延迟播放，形成一个动画序列。
 
-layer-anim是一个javascript动画组件，基于[GreenSock JS](http://www.greensock.com)动画库开发。
+LayerAnim是一个javascript动画组件，基于[GreenSock JS](http://www.greensock.com)动画库开发。
 
 ## 功能（Features）
 
