@@ -29,22 +29,6 @@ module.exports = function(grunt) {
                     {
                         src: "<%= pkg.version %>/index.js",
                         dest: "<%= pkg.version %>/build/index.js"
-                    },
-                    {
-                        src: "<%= pkg.version %>/timeline.js",
-                        dest: "<%= pkg.version %>/build/timeline.js"
-                    },
-                    {
-                        src: "<%= pkg.version %>/tween.js",
-                        dest: "<%= pkg.version %>/build/tween.js"
-                    },
-                    {
-                        src: "<%= pkg.version %>/css.js",
-                        dest: "<%= pkg.version %>/build/css.js"
-                    },
-                    {
-                        src: "<%= pkg.version %>/easing.js",
-                        dest: "<%= pkg.version %>/build/easing.js"
                     }
                 ]
             }
@@ -57,11 +41,7 @@ module.exports = function(grunt) {
             },
             base: {
                 files: {
-                    '<%= pkg.version %>/build/index-min.js': ['<%= pkg.version %>/build/index.js'],
-                    '<%= pkg.version %>/build/timeline-min.js': ['<%= pkg.version %>/build/timeline.js'],
-                    '<%= pkg.version %>/build/tween-min.js': ['<%= pkg.version %>/build/tween.js'],
-                    '<%= pkg.version %>/build/css-min.js': ['<%= pkg.version %>/build/css.js'],
-                    '<%= pkg.version %>/build/easing-min.js': ['<%= pkg.version %>/build/easing.js']
+                    '<%= pkg.version %>/build/index-min.js': ['<%= pkg.version %>/build/index.js']
                 }
             }
         }

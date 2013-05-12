@@ -8,6 +8,12 @@ gallery/layer-anim/1.0/css
 gallery/layer-anim/1.0/index
 
 */
+/**
+ * @fileoverview 分层动画组件
+ * @author agu.hc<blueaqua2000@gmail.com>
+ * @module layer-anim
+ * @date 2013-3-6
+ */
 /*!
  * Tween-Lite
  * VERSION: beta 1.9.3
@@ -1623,6 +1629,12 @@ KISSY.add("gallery/layer-anim/1.0/tween", function()
     return TweenLite;
 });
 
+/**
+ * @fileoverview 分层动画组件
+ * @author agu.hc<blueaqua2000@gmail.com>
+ * @module layer-anim
+ * @date 2013-3-6
+ */
 /*!
  * TimeLine-Lite
  * VERSION: beta 1.9.3
@@ -2232,6 +2244,12 @@ KISSY.add("gallery/layer-anim/1.0/timeline", function()
     return window.GreenSockGlobals.TimelineLite;
 });
 
+/**
+ * @fileoverview 分层动画组件
+ * @author agu.hc<blueaqua2000@gmail.com>
+ * @module layer-anim
+ * @date 2013-3-6
+ */
 /*!
  * Easing Pack
  * VERSION: beta 1.9.3
@@ -2583,6 +2601,12 @@ KISSY.add("gallery/layer-anim/1.0/easing", function()
 
 });
 
+/**
+ * @fileoverview 分层动画组件
+ * @author agu.hc<blueaqua2000@gmail.com>
+ * @module layer-anim
+ * @date 2013-3-6
+ */
 /*!
  * CSS Plugin
  * VERSION: beta 1.9.3

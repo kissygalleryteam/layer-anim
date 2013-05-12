@@ -1,3 +1,9 @@
+/**
+ * @fileoverview 分层动画组件
+ * @author agu.hc<blueaqua2000@gmail.com>
+ * @module layer-anim
+ * @date 2013-3-6
+ */
 /*!
  * Easing Pack
  * VERSION: beta 1.9.3
