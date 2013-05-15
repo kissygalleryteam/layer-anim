@@ -29,7 +29,7 @@ gallery/layer-anim/1.0/index
  * @modified: agu.hc@taobao.com
  */
 
-KISSY.add("gallery/layer-anim/1.0/tween", function()
+KISSY.add('gallery/layer-anim/1.0/tween',function()
 {
     "use strict";
 
@@ -1650,7 +1650,7 @@ KISSY.add("gallery/layer-anim/1.0/tween", function()
  * @modified: agu.hc@taobao.com
  */
 
-KISSY.add("gallery/layer-anim/1.0/timeline", function()
+KISSY.add('gallery/layer-anim/1.0/timeline',function()
 {
     "use strict";
 
@@ -2264,7 +2264,7 @@ KISSY.add("gallery/layer-anim/1.0/timeline", function()
  * @author: Jack Doyle, jack@greensock.com
  * @modified: agu.hc@taobao.com
  **/
-KISSY.add("gallery/layer-anim/1.0/easing", function()
+KISSY.add('gallery/layer-anim/1.0/easing',function()
 {
     "use strict";
 
@@ -2621,7 +2621,7 @@ KISSY.add("gallery/layer-anim/1.0/easing", function()
  * @author: Jack Doyle, jack@greensock.com
  * @modified: agu.hc@taobao.com
  */
-KISSY.add("gallery/layer-anim/1.0/css", function()
+KISSY.add('gallery/layer-anim/1.0/css',function()
 {
     "use strict";
 
@@ -4824,7 +4824,7 @@ KISSY.add("gallery/layer-anim/1.0/css", function()
  * @module layer-anim
  * @date 2013-3-6
  */
-KISSY.add("gallery/layer-anim/1.0/index", function(KISSY, Event, DOM, UA, Tween, Timeline)
+KISSY.add('gallery/layer-anim/1.0/index',function(KISSY, Event, DOM, UA, Tween, Timeline)
 {
     /**
      * 配置参数：
@@ -5175,6 +5175,6 @@ KISSY.add("gallery/layer-anim/1.0/index", function(KISSY, Event, DOM, UA, Tween,
     return LayerAnim;
 },
 {
-    requires: ["event", "dom", "ua", "gallery/gallery/layer-anim/1.0/tween", "gallery/gallery/layer-anim/1.0/timeline", "gallery/gallery/layer-anim/1.0/easing", "gallery/gallery/layer-anim/1.0/css"]
+    requires: ["event", "dom", "ua", "./tween", "./timeline", "./easing", "./css"]
 });
 

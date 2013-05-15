@@ -4,7 +4,7 @@
  * @module layer-anim
  * @date 2013-3-6
  */
-KISSY.add("gallery/layer-anim/1.0/index", function(KISSY, Event, DOM, UA, Tween, Timeline)
+KISSY.add(function(KISSY, Event, DOM, UA, Tween, Timeline)
 {
     /**
      * 配置参数：
@@ -355,5 +355,5 @@ KISSY.add("gallery/layer-anim/1.0/index", function(KISSY, Event, DOM, UA, Tween,
     return LayerAnim;
 },
 {
-    requires: ["event", "dom", "ua", "gallery/layer-anim/1.0/tween", "gallery/layer-anim/1.0/timeline", "gallery/layer-anim/1.0/easing", "gallery/layer-anim/1.0/css"]
+    requires: ["event", "dom", "ua", "./tween", "./timeline", "./easing", "./css"]
 });

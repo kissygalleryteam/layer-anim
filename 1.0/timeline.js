@@ -19,7 +19,7 @@
  * @modified: agu.hc@taobao.com
  */
 
-KISSY.add("gallery/layer-anim/1.0/timeline", function()
+KISSY.add(function()
 {
     "use strict";
 
