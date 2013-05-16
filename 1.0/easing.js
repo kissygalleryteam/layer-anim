@@ -18,7 +18,7 @@
  * @author: Jack Doyle, jack@greensock.com
  * @modified: agu.hc@taobao.com
  **/
-KISSY.add("gallery/layer-anim/1.0/easing", function()
+KISSY.add(function()
 {
     "use strict";
 
