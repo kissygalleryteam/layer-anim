@@ -1,10 +1,10 @@
 {
     "name": "layer-anim",
-    "version": "1.0",
+    "version": "1.1",
     "desc": "分层动画组件",
-    "cover": "",
+    "cover": "http://img04.taobaocdn.com/tps/i4/T1ei0EFXlgXXcH.AUy-190-214.png",
     "author": {
-        "name": "agu.hc",
+        "name": "阿古",
         "email": "blueaqua2000@gmail.com",
         "page": "https://github.com/blueaqua2000"
     },

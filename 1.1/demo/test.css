@@ -1,0 +1,5 @@
+@CHARSET "utf-8";
+
+div {width: 320px; height: 220px; font-family: Verdana; font-size: 40px; font-weight: bold; position: relative; overflow: hidden; margin: 0 auto;}
+span {top: -50px; position: relative; float: left;}
+em {top: 0px; left: 10px; position: relative; font-size: 180px; opacity: 0; float: left;}
