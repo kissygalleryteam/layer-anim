@@ -19,7 +19,7 @@
 
 组件首页：[http://gallery.kissyui.com/layer-anim/1.1/guide/index.html](http://gallery.kissyui.com/layer-anim/1.1/guide/index.html)
 
-LayerAnim是一个javascript动画组件，其与众不同之处在于：
+LayerAnim是一个专业级javascript动画组件，其强大之处在于：
 
 * 创建**分层动画**（与Flash类似）
 
