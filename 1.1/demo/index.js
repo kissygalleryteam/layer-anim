@@ -1,4 +1,4 @@
-KISSY.use("gallery/layer-anim/1.1/, dom, event, json", function(S, LayerAnim, DOM, Event, JSON)
+KISSY.use("gallery/layer-anim/1.1/, dom, event, json, overlay", function(S, LayerAnim, DOM, Event, JSON, Overlay)
 {
     // Shark
     var nodeShark = DOM.get(".shark");
@@ -305,6 +305,10 @@ KISSY.use("gallery/layer-anim/1.1/, dom, event, json", function(S, LayerAnim, DO
             Event.on(node, "click", this._handleStopClick, this);
             Event.on(node, "mousedown", this._handleButtonDown, this);
             Event.on(node, "mouseup", this._handleButtonUp, this);
+            node = this.nodeStop = DOM.get("#J-ViewCode");
+            Event.on(node, "click", this._handleViewCodeClick, this);
+            Event.on(node, "mousedown", this._handleButtonDown, this);
+            Event.on(node, "mouseup", this._handleButtonUp, this);
         },
         
         initTimeline: function(id)
@@ -378,7 +382,7 @@ KISSY.use("gallery/layer-anim/1.1/, dom, event, json", function(S, LayerAnim, DO
                 value = config[i] || DOM.attr(node, "defaultValue") || "";
                 if (typeof value == "object")
                 {
-                    value = this._stringify(value);
+                    value = JSON.stringify(value, null, "  ");
                 }
                 node[node.type == "checkbox" ? "checked" : "value"] = value;
                 if (groupTimeline && DOM.attr(node, "member") == "true")
@@ -393,20 +397,7 @@ KISSY.use("gallery/layer-anim/1.1/, dom, event, json", function(S, LayerAnim, DO
                 }
             }
         },
-        
-        _stringify: function(obj)
-        {
-            var result = [], i;
-            if (obj)
-            {
-                for (i in obj)
-                {
-                    result.push("  \"" + i + "\": " + JSON.stringify(obj[i]));
-                }
-            }
-            return "{\n" + result.join(",\n") + "\n}";
-        },
-        
+
         reset: function()
         {
             var nodePlayback = this.nodePlayback;
@@ -462,10 +453,18 @@ KISSY.use("gallery/layer-anim/1.1/, dom, event, json", function(S, LayerAnim, DO
 
         _handleCheckChange: function(e)
         {
-            var node = e.target, value = node.value, config = this.currentConfig;
+            var node = e.target, value = node.value, config = this.currentConfig, name;
             if (config)
             {
-                config[DOM.attr(node, "rel")] = node.checked;
+                name = DOM.attr(node, "rel");
+                if (node.checked)
+                {
+                    config[name] = true;
+                }
+                else
+                {
+                    delete config[name];
+                }
                 this.reset();
             }
         },
@@ -514,6 +513,41 @@ KISSY.use("gallery/layer-anim/1.1/, dom, event, json", function(S, LayerAnim, DO
                 nodePlayback.className = "btn-play";
                 DOM.css(this.nodePointer, "left", 118);
             }
+        },
+        
+        _handleViewCodeClick: function(e)
+        {
+            var codeViewer = this.codeViewer, node;
+            if (! codeViewer)
+            {
+                codeViewer = this.codeViewer = new Overlay.Dialog(
+                {
+                    headerContent: "LayerAnim 配置参数",
+                    bodyContent: "<textarea class='code-viewer' disabled='disabled'></textarea>",
+                    zIndex: 10,
+                    mask: true,
+                    align:
+                    {
+                        points: ["cc", "cc"]
+                    },
+                    closable: true
+                }).render();
+            }
+            node = codeViewer.get("contentEl");
+            DOM.text(DOM.get(".code-viewer", node[0]), this._getScript());
+            codeViewer.show();
+        },
+        
+        _getScript: function()
+        {
+            var configScript = [S.clone(configBigFish), S.clone(configMidFish), S.clone(configSmallFish)], i = 0, anims, node;
+            for (; i < 3; ++ i)
+            {
+                anims = configScript[i].anims;
+                node = anims[0].node;
+                anims[0].node = anims[1].node = "." + node.className;
+            }
+            return "KISSY.use(\"gallery/layer-anim/1.1/\", function(KISSY, LayerAnim)\n{\nnew LayerAnim(\n" + js_beautify(JSON.stringify(configScript)) + "\n).run();\n});";
         },
         
         _handleButtonDown: function(e)

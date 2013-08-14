@@ -1,9 +1,11 @@
 @CHARSET "utf-8";
 
-body {margin: 0 10px; font-family: Helvetica, Arial, sans-serif; font-size: 12px;}
-textarea {border: 1px solid #b5b5b5; border-radius: 4px; padding: 2px 4px; font-size: 12px; resize: none;}
+body {margin: 0 10px; font-family: Helvetica, Arial, sans-serif; font-size: 12px; background-color: #FFF;}
+textarea {padding: 2px 4px; font-size: 12px; resize: none;}
 input {margin: 0; padding: 2px 4px;}
 select {margin: 0; border: 1px solid #b5b5b5; border-radius: 4px; padding: 2px 4px;}
+pre {margin: 0; padding: 0;}
+button {cursor: pointer;}
 
 /* Anim */
 .anim-canvas {width: 960px; height: 480px; margin: 0px auto; background: url(bg.jpg) no-repeat 0 0; border-radius: 4px; position: relative; overflow: hidden;}
@@ -48,7 +50,7 @@ select {margin: 0; border: 1px solid #b5b5b5; border-radius: 4px; padding: 2px 4
 .layer-point {width: 8px; height: 8px; top: 1px; /*background-color: #888;*/ border-radius: 6px; display: inline-block; position: absolute; font-size: 0;}
 .layer-point-begin {left: 0;}
 .layer-point-end {right: 0;}
-.layer-duration {top: -2px; *top: 0; color: #707070; display: inline-block; position: relative; cursor: pointer;}
+.layer-duration {top: 0; color: #707070; display: inline-block; position: relative; cursor: pointer;}
 .editor-content-selected .layer-duration {color: #FFF;}
 .anim-group .layer-point {width: 0; height: 0; top: 5px; border-width: 7px 4px; *border-width: 0; border-style: solid; border-radius: 0; background-color: transparent;}
 .anim-group .layer-point-begin {border-color:#999 transparent transparent transparent;}
@@ -58,6 +60,7 @@ select {margin: 0; border: 1px solid #b5b5b5; border-radius: 4px; padding: 2px 4
 .property-editor ul {display: inline-block; padding: 0; margin: 0;}
 .property-editor li {padding: 6px 4px; list-style: none; float: left; white-space: nowrap;}
 .property-editor select {width: 140px;}
+.property-editor textarea {border: 1px solid #b5b5b5; border-radius: 4px;}
 .prop-name {width: 80px; line-height: 22px; display: inline-block;}
 .prop-column-left {clear: both;}
 .prop-column-right {margin-left: 30px;}
@@ -71,7 +74,21 @@ select {margin: 0; border: 1px solid #b5b5b5; border-radius: 4px; padding: 2px 4
 .actions {right: 14px; bottom: 80px; position: absolute;}
 .actions button {padding: 3px 6px 3px 22px; margin-left: 20px; border: 1px solid #808080; border-radius: 4px; background-color: #FFF;}
 .actions .action-pressed {background-color: #e6e6e6; border: 1px solid #404040; border-radius: 4px;}
-.btn-play {background: url(play.png) no-repeat 2px 2px;}
-.btn-pause {background: url(pause.png) no-repeat 2px 2px;}
-.btn-replay {background: url(replay.png) no-repeat 2px 2px;}
-.btn-stop {background: url(stop.png) no-repeat 2px 2px;}
+.btn-play {background: url(play.gif) no-repeat 2px 2px;}
+.btn-pause {background: url(pause.gif) no-repeat 2px 2px;}
+.btn-replay {background: url(replay.gif) no-repeat 2px 2px;}
+.btn-stop {background: url(stop.gif) no-repeat 2px 2px;}
+.btn-code {background: url(view.gif) no-repeat 2px 2px;}
+
+.ks-dialog,.ks-overlay {position: absolute; left: -9999px; top: -9999px; outline: none;}
+.ks-overlay-hidden {visibility: hidden;}
+.ks-overlay-mask-hidden {display: none;}
+.ks-overlay-shown {visibility: visible;}
+.ks-overlay-mask-shown {display: block;}
+.ks-dialog {background-color: #FBFBFB; border: 1px solid #ACB4BE; border-radius: 4px;}
+.ks-dialog .ks-stdmod-header {background: repeat-x scroll 0 0 #D6DBE2; border-bottom: 1px solid #ACB4BE; font-weight: bold; height: 24px; line-height: 24px; padding: 0 0 0 6px;}
+.ks-dialog .ks-stdmod-body {margin-bottom: -3px;}
+.ks-ext-close {height: 18px; width: 18px; right: 4px; top: 3px; vertical-align: middle; position: absolute; text-decoration: none; outline: none; _border-color: tomato; _filter: chroma(color=tomato); overflow: hidden; cursor: pointer;}
+.ks-ext-close .ks-ext-close-x {display: block; background: no-repeat; background-image: url(close.gif); height: 19px; text-indent: -9999px; width: 19px;}
+.ks-ext-mask {background-color: #000; opacity: 0.3; filter: alpha(opacity=15);}
+.code-viewer {width: 400px; height: 400px; padding: 4px 6px; border-width: 0; border-radius: 4px;}
