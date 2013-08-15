@@ -266,9 +266,10 @@ KISSY.use("gallery/layer-anim/1.1/, dom, event, json, overlay", function(S, Laye
             this.refreshTimeline("MidFish");
             this.initTimeline("SmallFish");
             this.refreshTimeline("SmallFish");
-            var nodeEditor = DOM.get("#J-Timeline");
-            Event.delegate(nodeEditor, "click", ".anim-group", this._groupClickHandler, this);
-            Event.delegate(nodeEditor, "click", ".anim-group-member", this._memberClickHandler, this);
+            var nodeEditor = this.nodeEditor = DOM.get("#J-Timeline");
+            Event.delegate(nodeEditor, "click", ".anim-group", this._handleGroupClick, this);
+            Event.delegate(nodeEditor, "click", ".anim-group-member", this._handleMemberClick, this);
+            Event.on(DOM.get(".scale", nodeEditor), "click", this._handleScaleClick, this);
             // initialize editor
             this.nodePointer = DOM.get("#J-Pointer");
             var nodePropertyEditor = this.nodePropertyEditor = DOM.get("#J-PropertyEditor");
@@ -347,18 +348,31 @@ KISSY.use("gallery/layer-anim/1.1/, dom, event, json, overlay", function(S, Laye
             DOM.css(nodeTimeLines.nodeGroup, "width", len - duration);
         },
         
-        _groupClickHandler: function(e)
+        _handleGroupClick: function(e)
         {
             var node = e.currentTarget;
             this.toggleSelection(node);
             this.showConfiguration(DOM.attr(node, "group"));
         },
         
-        _memberClickHandler: function(e)
+        _handleMemberClick: function(e)
         {
             var node = e.currentTarget;
             this.toggleSelection(node);
             this.showConfiguration(DOM.attr(node, "group"), parseInt(DOM.attr(node, "member")));
+        },
+        
+        _handleScaleClick: function(e)
+        {
+            var node = e.currentTarget, anim = this.anim, nodePlayback = this.nodePlayback, pos;
+            if (anim && DOM.hasClass(e.target, "scale-unit"))  // click scale
+            {
+                pos = e.pageX - DOM.offset(node).left;
+                DOM.css(this.nodePointer, "left", 118 + pos);
+                anim.seek(pos / this._unitLength);
+                DOM.text(nodePlayback, "播放");
+                nodePlayback.className = "btn-play";
+            }
         },
         
         toggleSelection: function(node)
@@ -547,7 +561,7 @@ KISSY.use("gallery/layer-anim/1.1/, dom, event, json, overlay", function(S, Laye
                 node = anims[0].node;
                 anims[0].node = anims[1].node = "." + node.className;
             }
-            return "KISSY.use(\"gallery/layer-anim/1.1/\", function(KISSY, LayerAnim)\n{\nnew LayerAnim(\n" + js_beautify(JSON.stringify(configScript)) + "\n).run();\n});";
+            return "KISSY.use(\"gallery/layer-anim/1.1/\", function(KISSY, LayerAnim){\nnew LayerAnim(" + js_beautify(JSON.stringify(configScript)) + ").run();\n});";
         },
         
         _handleButtonDown: function(e)

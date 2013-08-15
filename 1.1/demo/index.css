@@ -11,7 +11,7 @@ button {cursor: pointer;}
 .anim-canvas {width: 960px; height: 480px; margin: 0px auto; background: url(bg.jpg) no-repeat 0 0; border-radius: 4px; position: relative; overflow: hidden;}
 .mask {width: 960px; height: 480px; left: 0; top: 0; position: absolute;}
 
-.logo {padding: 10px 12px; right: 0; top: 0; color: #FFF; font-size: 22px; position: absolute; letter-spacing: 2px; text-decoration: none; white-space: nowrap; -webkit-font-smoothing: antialiased; opacity: 0;}
+.logo {padding: 10px 12px; right: 0; top: 0; color: #cbf5fb; font-family: cursive; font-size: 22px; position: absolute; letter-spacing: 2px; text-decoration: none; white-space: nowrap; -webkit-font-smoothing: antialiased; opacity: 0;}
 .logo:hover {text-decoration: none;}
 
 .shark {width: 200px; height: 50px; left: -200px; top: 16px; background: url(shark.png) no-repeat 0 0; background: none\9; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale',src='shark.png'); position: absolute;}
@@ -20,7 +20,7 @@ button {cursor: pointer;}
 .mid-fish {/*width: 240px; height: 179px;*/ right: -325px; top: 90px; background: url(mid-fish.png) no-repeat 0 0; background-size: cover; background: none\9; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale',src='mid-fish.png'); position: absolute;}
 .big-fish {/*width: 300px; height: 214px;*/ right: -488px; top: 186px; background: url(big-fish.png) no-repeat 0 0; background-size: cover; background: none\9; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale',src='big-fish.png'); position: absolute;}
 
-.misc {padding: 10px 12px; right: 0; bottom: 0; color: #B2B2B2; font-size: 14px; position: absolute; white-space: nowrap; cursor: default;}
+.misc {padding: 10px 12px; right: 0; bottom: 0; color: #a2e1d4; font-family: cursive; font-size: 14px; position: absolute; white-space: nowrap; cursor: default;}
 .misc span {padding: 0 1px; float: left; -webkit-font-smoothing: antialiased;}
 
 .shadow {width: 960px; height: 60px; margin: -35px auto 0 auto; background: url(shadow.png) no-repeat 0 -2px; background-size: cover; background: none\9; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale',src='shadow.png');}
@@ -37,11 +37,12 @@ button {cursor: pointer;}
 .editor-content-selected {background-color: #eef !important;}
 .editor-content-selected .layer {background-color: #D6D6D6 !important;}
 .editor-title .layer {border-width: 0; background-color: #D6D6D6; }
-.editor-title .scale {width: 840px; border-width: 0; background: #D6D6D6 url(layer-scale.png) repeat-x 0 bottom; white-space: nowrap;}
+.editor-title .scale {width: 840px; border-width: 0; background: #D6D6D6 url(layer-scale.png) repeat-x 0 bottom; white-space: nowrap; cursor: pointer;}
 .editor-pointer {width: 0px; height: 200px; left: 118px; top: 0; border-left: 1px solid #b90000; overflow: hidden; font-size: 0; position: absolute; overflow: hidden;}
-.scale-unit {width: 150px; letter-spacing: -1px; display: inline-block; text-align: left; float: left;}
+.scale-unit {width: 150px; letter-spacing: -1px; display: inline-block; text-align: left; float: left; font-style: italic;}
 .scale-unit-last {width: 86px;}
 .layer-icon {width: 14px; height: 14px; margin: 0 3px -3px 0;}
+.anim-group .layer {font-weight: bold; font-style: italic;}
 .anim-group-member .layer {padding-left: 36px; width: 77px;}
 
 .anim-layer {width: 0; height: 10px; left: 0; top: 4px; line-height: 10px; background-color: #ccc; border-radius: 6px; position: absolute; display: inline-block; text-align: center;}

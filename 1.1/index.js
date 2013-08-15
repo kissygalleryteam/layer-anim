@@ -172,26 +172,17 @@ KISSY.add(function(KISSY, Event, DOM, UA, Tween, Timeline)
         },
 
         /**
-         * 跳转到指定时间点
+         * 跳转到指定时间点并暂停播放
          * @public
          * @param position {Number} 时间点（单位：秒，默认：0）
          * @returns {LayerAnim} 分层动画对象（支持链式调用）
          */
         seek: function(position)
         {
-            this.anim.seek(typeof position == "number" ? position : 0);
+            this.anim.pause(typeof position == "number" ? position : 0);
             return this;
         },
 
-        /**
-         * 获取当前动画播放时间
-         * @returns {Number} 当前动画播放时间（单位：秒）
-         */
-        time: function()
-        {
-            return this.anim.totalTime();
-        },
-        
         /**
          * 跳转到动画结束时刻
          * @public
@@ -210,7 +201,16 @@ KISSY.add(function(KISSY, Event, DOM, UA, Tween, Timeline)
         {
             this.anim.kill();
         },
-        
+
+        /**
+         * 获取当前动画播放时间
+         * @returns {Number} 当前动画播放时间（单位：秒）
+         */
+        time: function()
+        {
+            return this.anim.totalTime();
+        },
+
         /**
          * 创建动画/动画组
          * @private
