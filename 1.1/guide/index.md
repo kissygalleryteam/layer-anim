@@ -786,7 +786,7 @@ KISSY.use("gallery/layer-anim/1.1/", function(S, LayerAnim)
 
 - seek(position)
 
-   跳转到指定位置。
+   跳转到指定位置，并暂停播放。
 
    * 参数：
 
