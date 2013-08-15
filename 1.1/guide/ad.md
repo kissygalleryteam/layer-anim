@@ -1,7 +1,5 @@
-分层动画组件（LayerAnim）
+专业级动画组件 —— LayerAnim
 ==========================
-
-作者：[阿古](mailto:blueaqua2000@gmail.com)
 
 你还在为某些动画效果的实现而绞尽脑汁吗？
 
@@ -11,6 +9,8 @@
 
 对浏览器兼容性问题一筹莫展？
 
+晕！以前写的动画代码看不懂!
+
 有了LayerAnim，这些都已不再是问题！
 
 ## LayerAnim是什么
@@ -19,13 +19,11 @@
 
 组件首页：[http://gallery.kissyui.com/layer-anim/1.1/guide/index.html](http://gallery.kissyui.com/layer-anim/1.1/guide/index.html)
 
-LayerAnim是一个专业级javascript动画组件，其强大之处在于：
+LayerAnim是一个javascript动画组件，其与众不同之处在于：
 
 * 创建分层动画（与Flash类似）
 
 * 随意定制各个分层动画的播放顺序
-
-* 支持无限重复播放动画，甚至以相反顺序重复播放
 
 * 精确的回放控制（如：反向播放、重新播放、从特定时间点开始播放等）
 
@@ -47,7 +45,7 @@ LayerAnim是一个专业级javascript动画组件，其强大之处在于：
 
 ## 为什么选择LayerAnim
 
-随着众多动画组件及CSS 3的出现，做动画早已不是什么难事。但这些组件是否易于使用？做出的效果是否令人满意？恐怕只有使用时，才能发现存在的问题。
+随着众多动画组件及CSS 3的出现，做动画早已不是什么难事。但这些组件是否易于使用？做出的效果是否令人满意？恐怕只有真正使用时，才会发现这里不满足需求，那里有问题等等。
 
 让我们来看看LayerAnim：
 
@@ -79,36 +77,87 @@ LayerAnim是一个专业级javascript动画组件，其强大之处在于：
 
   * LayerAnim已对众多浏览器的Bug进行了处理，让那些令人头疼的问题见鬼去吧。
 
+## LayerAnim体验
+
+了解了这么多，是否迫不及待开始使用LayerAnim了？下面我们就来体验下LayerAnim的强大吧。
+
+![LayerAnim演示](http://img03.taobaocdn.com/tps/i3/T158dKFapXXXcbYjkZ-341-134.gif)
+
+上面的动画就是使用LayerAnim创建的，只需要一些简单的JS配置就可以了。
+
+HTML：
+
+```html
+    <div>
+        <span>L</span>
+        <span>a</span>
+        <span>y</span>
+        <span>e</span>
+        <span>r</span>
+        <span>A</span>
+        <span>n</span>
+        <span>i</span>
+        <span>m</span>
+        <em>!</em>
+    </div>
+```
+
+CSS：
+
+```css
+    div {width: 320px; height: 220px; font-family: Verdana; font-size: 40px; font-weight: bold; position: relative; overflow: hidden; margin: 0 auto;}
+    span {top: -50px; position: relative; float: left;}
+    em {top: 0px; left: 10px; position: relative; font-size: 180px; opacity: 0; float: left;}
+```
+
+JS：
+
+```javascript
+KISSY.use('gallery/layer-anim/1.1/, dom', function(S, LayerAnim, DOM)
+{
+    var config = [], nodes = DOM.query("span"), i, size;
+    // 字母动画配置参数（所有字母动画同时播放）
+    for (i = 0, size = nodes.length; i < size; ++ i)
+    {
+        config[i] =
+        {
+            node: nodes[i],  // 动画DOM节点
+            to:  // 动画结束值
+            {
+                top: 50
+            },
+            delay: Math.random(),  // 延迟播放时间（单位：秒）
+            easing: "Bounce.easeOut",  // 过渡效果
+            duration: 1  // 动画时长（单位：秒）
+        };
+    }
+    // “!”动画配置参数（字母动画播放完后再播放）
+    config.push(
+    {
+        node: DOM.get("em"),
+        to:
+        {
+            top: 90,
+            fontSize: "50px",
+            opacity: 1
+        },
+        easing: "Power4.easeIn",
+        duration: 0.6,
+        align: "sequence"  // 上一动画播放完再播放该动画
+    });
+    new LayerAnim(config).run();
+});
+```
+
 ## LayerAnim探秘
 
-LayerAnim基于时间轴（Timeline）来实现分层动画，与Flash中的时间轴概念相同。
+LayerAnim基于时间线（Timeline）来实现分层动画，与Flash中的时间线概念相同。
 
-![时间轴](http://img01.taobaocdn.com/tps/i1/T1x00HFbReXXa8U2PP-507-106.png)
+![时间线](http://img01.taobaocdn.com/tps/i1/T1x00HFbReXXa8U2PP-507-106.png)
 
-所有动画层都基于时间轴来创建。因此，可以很容易地实现复杂的动画序列，同时，基于时间轴，也可以精确控制动画的播放、暂停、跳转，甚至反向播放等。
+所有动画层都被创建到时间线上。因此，有了时间线，再复杂的分层动画都可以很容易地实现，同时，LayerAnim还可以精确控制动画的播放、暂停、跳转，甚至反向播放等。
 
 ## 进一步了解LayerAnim
 
-* [Demo](http://gallery.kissyui.com/layer-anim/1.1/demo/index.html)
-
 * [使用手册及API](http://gallery.kissyui.com/layer-anim/1.1/guide/index.html)
-
-## 更新历史
-
-* v1.1
-
-  * 支持重复播放动画（repeat），可无限重复
-  * 每次重复播放的时间间隔（repeatDelay）
-  * 重复播放时，是否以相反顺序播放（yoyo）
-  * 多个动画以一定间隔时间播放（stagger）
-  * 支持动画开始播放事件（start）、每帧动画更新事件（update）
-  * 修改run()方法参数，支持从时间点开始播放
-
-* v1.0
-
-  * 支持基本动画参数（from, to, duration, easing）
-  * 定制各个分层动画的播放顺序（align）
-  * 延迟播放（delay）
-  * 解决动画属性冲突（overwrite）
-  * 浏览器降级设置（degrade）
-  * 动画播放完毕事件（end）
+* [Demo](http://gallery.kissyui.com/layer-anim/1.1/demo/index.html)
