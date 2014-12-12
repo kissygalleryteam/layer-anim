@@ -2,7 +2,7 @@
  * @fileoverview 分层动画组件
  * @author 阿古<agu.hc@taobao.com>
  * @module layer-anim
- * @date 2013-7-29
+ * @date 2014-12-12
  */
 /*!
  * Easing Pack
@@ -16,7 +16,6 @@
  * Club GreenSock members, the software agreement that was issued with your membership.
  * 
  * @author: Jack Doyle, jack@greensock.com
- * @modified: agu.hc@taobao.com
  **/
 KISSY.add(function()
 {

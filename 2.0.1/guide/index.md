@@ -1,7 +1,7 @@
 分层动画组件（LayerAnim）
 ==========================
 
-（作者：阿古，版本：1.1）
+（作者：阿古，版本：2.0.1）
 
 LayerAnim是一个专业级javascript动画组件，基于[GreenSock JS](http://www.greensock.com)动画库开发。
 
@@ -21,7 +21,7 @@ LayerAnim是一个专业级javascript动画组件，基于[GreenSock JS](http://
 
 ## 演示
 
-[查看Demo](http://gallery.kissyui.com/layer-anim/1.1/demo/index.html)
+[查看Demo](http://gallery.kissyui.com/layer-anim/2.0.1/demo/index.html)
 
 ## 浏览器兼容性（Broswer Support）
 
@@ -53,7 +53,7 @@ KISSY.DOM.append(nodeExample, "body");
 该DOM节点绝对定位在页面的左上角，坐标(0, 0)。下面我们创建一个动画，将其移动到坐标(200, 200)。
 
 ```javascript
-KISSY.use("kg/layer-anim/2.0.0/", function(S, LayerAnim)
+KISSY.use("kg/layer-anim/2.0.1/", function(S, LayerAnim)
 {
     // 创建动画
     new LayerAnim(
@@ -74,7 +74,7 @@ KISSY.use("kg/layer-anim/2.0.0/", function(S, LayerAnim)
 node配置参数也支持DOM节点列表，例如：
 
 ```javascript
-KISSY.use("kg/layer-anim/2.0.0/", function(S, LayerAnim)
+KISSY.use("kg/layer-anim/2.0.1/", function(S, LayerAnim)
 {
     // 创建动画
     new LayerAnim(
@@ -95,7 +95,7 @@ KISSY.use("kg/layer-anim/2.0.0/", function(S, LayerAnim)
 另外，node配置参数还支持任意JS对象，例如：
 
 ```javascript
-KISSY.use("kg/layer-anim/2.0.0/", function(S, LayerAnim)
+KISSY.use("kg/layer-anim/2.0.1/", function(S, LayerAnim)
 {
     var obj =
     {
@@ -122,7 +122,7 @@ KISSY.use("kg/layer-anim/2.0.0/", function(S, LayerAnim)
 例如，从指定时间点开始播放动画。
 
 ```javascript
-KISSY.use("kg/layer-anim/2.0.0/", function(S, LayerAnim)
+KISSY.use("kg/layer-anim/2.0.1/", function(S, LayerAnim)
 {
     // 创建动画
     var anim = new LayerAnim(...);
@@ -138,7 +138,7 @@ KISSY.use("kg/layer-anim/2.0.0/", function(S, LayerAnim)
 例如，将DOM节点从坐标(10, 10)移动到坐标(200, 200)。
 
 ```javascript
-KISSY.use("kg/layer-anim/2.0.0/", function(S, LayerAnim)
+KISSY.use("kg/layer-anim/2.0.1/", function(S, LayerAnim)
 {
     // 创建动画
     new LayerAnim(
@@ -164,7 +164,7 @@ KISSY.use("kg/layer-anim/2.0.0/", function(S, LayerAnim)
 更为方便的是，```to```参数可以不设置，这样，DOM节点会从```from```指定的位置移动到当前的位置。
 
 ```javascript
-KISSY.use("kg/layer-anim/2.0.0/", function(S, LayerAnim)
+KISSY.use("kg/layer-anim/2.0.1/", function(S, LayerAnim)
 {
     // 创建动画
     new LayerAnim(
@@ -186,7 +186,7 @@ KISSY.use("kg/layer-anim/2.0.0/", function(S, LayerAnim)
 在动画的起始和结束阶段，可以显示各种过渡效果，这些效果可通过```easing```参数进行配置。例如，在动画结束阶段，显示弹跳效果，如下：
 
 ```javascript
-KISSY.use("kg/layer-anim/2.0.0/", function(S, LayerAnim)
+KISSY.use("kg/layer-anim/2.0.1/", function(S, LayerAnim)
 {
     // 创建动画
     new LayerAnim(
@@ -210,7 +210,7 @@ KISSY.use("kg/layer-anim/2.0.0/", function(S, LayerAnim)
 有时，我们需要延迟一段时间，再开始播放动画。此时，可以使用```delay```参数。
 
 ```javascript
-KISSY.use("kg/layer-anim/2.0.0/", function(S, LayerAnim)
+KISSY.use("kg/layer-anim/2.0.1/", function(S, LayerAnim)
 {
     // 创建动画
     new LayerAnim(
@@ -234,7 +234,7 @@ KISSY.use("kg/layer-anim/2.0.0/", function(S, LayerAnim)
 如果想反复播放同一动画，可通过```repeat```参数实现。例如：
 
 ```javascript
-KISSY.use("kg/layer-anim/2.0.0/", function(S, LayerAnim)
+KISSY.use("kg/layer-anim/2.0.1/", function(S, LayerAnim)
 {
     // 创建动画
     new LayerAnim(
@@ -258,7 +258,7 @@ KISSY.use("kg/layer-anim/2.0.0/", function(S, LayerAnim)
 重复播放动画时，还可设置每次重复播放时的延迟时间，例如：
 
 ```javascript
-KISSY.use("kg/layer-anim/2.0.0/", function(S, LayerAnim)
+KISSY.use("kg/layer-anim/2.0.1/", function(S, LayerAnim)
 {
     // 创建动画
     new LayerAnim(
@@ -283,7 +283,7 @@ KISSY.use("kg/layer-anim/2.0.0/", function(S, LayerAnim)
 “反向重复播放”是指，每次重复播放时，以相反顺序播放（即上次播放顺序的反序）。
 
 ```javascript
-KISSY.use("kg/layer-anim/2.0.0/", function(S, LayerAnim)
+KISSY.use("kg/layer-anim/2.0.1/", function(S, LayerAnim)
 {
     // 创建动画
     new LayerAnim(
@@ -312,7 +312,7 @@ KISSY.use("kg/layer-anim/2.0.0/", function(S, LayerAnim)
 例如，设置IE 8以上浏览器（包括IE 8）才显示动画，代码如下：
 
 ```javascript
-KISSY.use("kg/layer-anim/2.0.0/", function(S, LayerAnim)
+KISSY.use("kg/layer-anim/2.0.1/", function(S, LayerAnim)
 {
     // 创建动画
     new LayerAnim(
@@ -343,7 +343,7 @@ KISSY.use("kg/layer-anim/2.0.0/", function(S, LayerAnim)
 所谓“同时播放”，即所有动画同时开始播放，也是默认的动画播放次序。将配置参数改为数组即可，例如：
 
 ```javascript
-KISSY.use("kg/layer-anim/2.0.0/, dom", function(S, LayerAnim, DOM)
+KISSY.use("kg/layer-anim/2.0.1/, dom", function(S, LayerAnim, DOM)
 {
     // 创建动画DOM节点
     var nodeA = DOM.create("<span style='position: absolute; left: 0; top: 0;'>动画节点A</span>");
@@ -382,7 +382,7 @@ KISSY.use("kg/layer-anim/2.0.0/, dom", function(S, LayerAnim, DOM)
 所谓“顺序播放”，即上一动画播放完毕后，才开始播放下一动画。例如：
 
 ```javascript
-KISSY.use("kg/layer-anim/2.0.0/, dom", function(S, LayerAnim, DOM)
+KISSY.use("kg/layer-anim/2.0.1/, dom", function(S, LayerAnim, DOM)
 {
     // 创建动画DOM节点
     var nodeA = DOM.create("<span style='position: absolute; left: 0; top: 0;'>动画节点A</span>");
@@ -516,7 +516,7 @@ new LayerAnim(
 - "none"：不处理冲突
 
 ```javascript
-KISSY.use("kg/layer-anim/2.0.0/, dom", function(S, LayerAnim, DOM)
+KISSY.use("kg/layer-anim/2.0.1/, dom", function(S, LayerAnim, DOM)
 {
     // 创建动画DOM节点
     var nodeExample = DOM.create("<span style='position: absolute; left: 0; top: 0;'>这是一个动画节点</span>");
@@ -554,7 +554,7 @@ KISSY.use("kg/layer-anim/2.0.0/, dom", function(S, LayerAnim, DOM)
 重复播放一组动画时，需要将配置参数中的数组修改为对象，例如：
 
 ```javascript
-KISSY.use("kg/layer-anim/2.0.0/, dom", function(S, LayerAnim, DOM)
+KISSY.use("kg/layer-anim/2.0.1/, dom", function(S, LayerAnim, DOM)
 {
     // 创建动画DOM节点
     var nodeA = DOM.create("<span style='position: absolute; left: 0; top: 0;'>动画节点A</span>");
@@ -598,7 +598,7 @@ KISSY.use("kg/layer-anim/2.0.0/, dom", function(S, LayerAnim, DOM)
 有时，我们需要每隔一段时间，播放一个动画。所有动画的起始值/结束值、时长均相同。这时，可使用```stagger```参数实现：
 
 ```javascript
-KISSY.use("kg/layer-anim/2.0.0/, dom", function(S, LayerAnim, DOM)
+KISSY.use("kg/layer-anim/2.0.1/, dom", function(S, LayerAnim, DOM)
 {
     // 创建动画DOM节点
     var nodeExample = DOM.create("<div style='position: relative; height: 300px;'>" +
@@ -628,7 +628,7 @@ KISSY.use("kg/layer-anim/2.0.0/, dom", function(S, LayerAnim, DOM)
 创建LayerAnim对象：
 
 ```javascript
-KISSY.use("kg/layer-anim/2.0.0/", function(S, LayerAnim)
+KISSY.use("kg/layer-anim/2.0.1/", function(S, LayerAnim)
 {
     var config = /* 配置参数 */;
     new LayerAnim(config);

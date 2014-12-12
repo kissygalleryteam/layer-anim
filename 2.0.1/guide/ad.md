@@ -17,7 +17,7 @@
 
 ![LayerAnim Logo](http://img04.taobaocdn.com/tps/i4/T1ei0EFXlgXXcH.AUy-190-214.png)
 
-组件首页：[http://gallery.kissyui.com/layer-anim/1.1/guide/index.html](http://gallery.kissyui.com/layer-anim/1.1/guide/index.html)
+组件首页：[http://gallery.kissyui.com/layer-anim/2.0.1/guide/index.html](http://gallery.kissyui.com/layer-anim/2.0.1/guide/index.html)
 
 LayerAnim是一个javascript动画组件，其与众不同之处在于：
 
@@ -113,7 +113,7 @@ CSS：
 JS：
 
 ```javascript
-KISSY.use('kg/layer-anim/2.0.0/, dom', function(S, LayerAnim, DOM)
+KISSY.use('kg/layer-anim/2.0.1/, dom', function(S, LayerAnim, DOM)
 {
     var config = [], nodes = DOM.query("span"), i, size;
     // 字母动画配置参数（所有字母动画同时播放）
@@ -159,5 +159,5 @@ LayerAnim基于时间线（Timeline）来实现分层动画，与Flash中的时�
 
 ## 进一步了解LayerAnim
 
-* [使用手册及API](http://gallery.kissyui.com/layer-anim/1.1/guide/index.html)
-* [Demo](http://gallery.kissyui.com/layer-anim/1.1/demo/index.html)
+* [使用手册及API](http://gallery.kissyui.com/layer-anim/2.0.1/guide/index.html)
+* [Demo](http://gallery.kissyui.com/layer-anim/2.0.1/demo/index.html)

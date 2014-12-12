@@ -1,4 +1,4 @@
-KISSY.use("kg/layer-anim/2.0.0/, dom, event, json, overlay", function(S, LayerAnim, DOM, Event, JSON, Overlay)
+KISSY.use("kg/layer-anim/2.0.1/, dom, event, json, overlay", function(S, LayerAnim, DOM, Event, JSON, Overlay)
 {
     // Shark
     var nodeShark = DOM.get(".shark");
@@ -561,7 +561,7 @@ KISSY.use("kg/layer-anim/2.0.0/, dom, event, json, overlay", function(S, LayerAn
                 node = anims[0].node;
                 anims[0].node = anims[1].node = "." + node.className;
             }
-            return "KISSY.use(\"kg/layer-anim/2.0.0/\", function(KISSY, LayerAnim){\nnew LayerAnim(" + js_beautify(JSON.stringify(configScript)) + ").run();\n});";
+            return "KISSY.use(\"kg/layer-anim/2.0.1/\", function(KISSY, LayerAnim){\nnew LayerAnim(" + js_beautify(JSON.stringify(configScript)) + ").run();\n});";
         },
         
         _handleButtonDown: function(e)

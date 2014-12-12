@@ -2,8 +2,8 @@
  * @fileoverview 分层动画组件
  * @author 阿古<agu.hc@taobao.com>
  * @module layer-anim
- * @version 1.1
- * @date 2013-7-29
+ * @version 2.0.1
+ * @date 2014-12-12
  */
 KISSY.add(function(KISSY, Event, DOM, UA, Tween, Timeline)
 {

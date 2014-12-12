@@ -1,18 +1,18 @@
 /*
 combined files : 
 
-kg/layer-anim/2.0.0/tween
-kg/layer-anim/2.0.0/timeline
-kg/layer-anim/2.0.0/easing
-kg/layer-anim/2.0.0/css
-kg/layer-anim/2.0.0/index
+kg/layer-anim/2.0.1/tween
+kg/layer-anim/2.0.1/timeline
+kg/layer-anim/2.0.1/easing
+kg/layer-anim/2.0.1/css
+kg/layer-anim/2.0.1/index
 
 */
 /**
  * @fileoverview 分层动画组件 - 动画
  * @author 阿古<agu.hc@taobao.com>
  * @module layer-anim
- * @date 2013-7-29
+ * @date 2014-12-12
  */
 /*!
  * TweenLite, TweenMax
@@ -26,10 +26,9 @@ kg/layer-anim/2.0.0/index
  * Club GreenSock members, the software agreement that was issued with your membership.
  * 
  * @author: Jack Doyle, jack@greensock.com
- * @modified: agu.hc@taobao.com
  */
 
-KISSY.add('kg/layer-anim/2.0.0/tween',function()
+KISSY.add('kg/layer-anim/2.0.1/tween',function()
 {
     "use strict";
 
@@ -2173,10 +2172,9 @@ KISSY.add('kg/layer-anim/2.0.0/tween',function()
  * Club GreenSock members, the software agreement that was issued with your membership.
  * 
  * @author: Jack Doyle, jack@greensock.com
- * @modified: agu.hc@taobao.com
  */
 
-KISSY.add('kg/layer-anim/2.0.0/timeline',function()
+KISSY.add('kg/layer-anim/2.0.1/timeline',function()
 {
     "use strict";
 
@@ -3249,9 +3247,8 @@ KISSY.add('kg/layer-anim/2.0.0/timeline',function()
  * Club GreenSock members, the software agreement that was issued with your membership.
  * 
  * @author: Jack Doyle, jack@greensock.com
- * @modified: agu.hc@taobao.com
  **/
-KISSY.add('kg/layer-anim/2.0.0/easing',function()
+KISSY.add('kg/layer-anim/2.0.1/easing',function()
 {
     "use strict";
 
@@ -3606,9 +3603,8 @@ KISSY.add('kg/layer-anim/2.0.0/easing',function()
  * Club GreenSock members, the software agreement that was issued with your membership.
  * 
  * @author: Jack Doyle, jack@greensock.com
- * @modified: agu.hc@taobao.com
  */
-KISSY.add('kg/layer-anim/2.0.0/css',function()
+KISSY.add('kg/layer-anim/2.0.1/css',function()
 {
     "use strict";
 
@@ -5831,7 +5827,7 @@ KISSY.add('kg/layer-anim/2.0.0/css',function()
  * @version 1.1
  * @date 2013-7-29
  */
-KISSY.add('kg/layer-anim/2.0.0/index',function(KISSY, Event, DOM, UA, Tween, Timeline)
+KISSY.add('kg/layer-anim/2.0.1/index',function(KISSY, Event, DOM, UA, Tween, Timeline)
 {
     /**
      * 配置参数：

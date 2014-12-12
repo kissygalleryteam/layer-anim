@@ -1,14 +1,14 @@
 /*
 combined files : 
 
-kg/layer-anim/2.0.0/css
+kg/layer-anim/2.0.1/css
 
 */
 /**
  * @fileoverview 分层动画组件
  * @author 阿古<agu.hc@taobao.com>
  * @module layer-anim
- * @date 2013-7-29
+ * @date 2014-12-12
  */
 /*!
  * CSS Plugin
@@ -22,9 +22,8 @@ kg/layer-anim/2.0.0/css
  * Club GreenSock members, the software agreement that was issued with your membership.
  * 
  * @author: Jack Doyle, jack@greensock.com
- * @modified: agu.hc@taobao.com
  */
-KISSY.add('kg/layer-anim/2.0.0/css',function()
+KISSY.add('kg/layer-anim/2.0.1/css',function()
 {
     "use strict";
 

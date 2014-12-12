@@ -1,14 +1,14 @@
 /*
 combined files : 
 
-kg/layer-anim/2.0.0/easing
+kg/layer-anim/2.0.1/easing
 
 */
 /**
  * @fileoverview 分层动画组件
  * @author 阿古<agu.hc@taobao.com>
  * @module layer-anim
- * @date 2013-7-29
+ * @date 2014-12-12
  */
 /*!
  * Easing Pack
@@ -22,9 +22,8 @@ kg/layer-anim/2.0.0/easing
  * Club GreenSock members, the software agreement that was issued with your membership.
  * 
  * @author: Jack Doyle, jack@greensock.com
- * @modified: agu.hc@taobao.com
  **/
-KISSY.add('kg/layer-anim/2.0.0/easing',function()
+KISSY.add('kg/layer-anim/2.0.1/easing',function()
 {
     "use strict";
 

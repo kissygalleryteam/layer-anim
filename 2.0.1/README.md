@@ -17,7 +17,7 @@
 
 ![LayerAnim Logo](http://img04.taobaocdn.com/tps/i4/T1ei0EFXlgXXcH.AUy-190-214.png)
 
-组件首页：[http://gallery.kissyui.com/layer-anim/1.1/guide/index.html](http://gallery.kissyui.com/layer-anim/1.1/guide/index.html)
+组件首页：[http://gallery.kissyui.com/layer-anim/2.0.1/guide/index.html](http://gallery.kissyui.com/layer-anim/2.0.1/guide/index.html)
 
 LayerAnim是一个专业级javascript动画组件，其强大之处在于：
 
@@ -89,13 +89,13 @@ LayerAnim基于时间轴（Timeline）来实现分层动画，与Flash中的时�
 
 ## 进一步了解LayerAnim
 
-* [Demo](http://gallery.kissyui.com/layer-anim/1.1/demo/index.html)
+* [Demo](http://gallery.kissyui.com/layer-anim/2.0.1/demo/index.html)
 
-* [使用手册及API](http://gallery.kissyui.com/layer-anim/1.1/guide/index.html)
+* [使用手册及API](http://gallery.kissyui.com/layer-anim/2.0.1/guide/index.html)
 
 ## 更新历史
 
-* v1.1
+* v2.0.1
 
   * 支持重复播放动画（repeat），可无限重复
   * 每次重复播放的时间间隔（repeatDelay）
