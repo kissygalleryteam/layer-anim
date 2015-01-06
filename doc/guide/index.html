@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>layer-anim</title>
+    <link rel="stylesheet" href="http://cdn.staticfile.org/twitter-bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://docs.kissyui.com/1.4/source/guideline/templates/assets/com-prettify.css">
+    <link rel="stylesheet" href="http://docs.kissyui.com/1.4/source/guideline/templates/assets/com.css">
+    <script src="http://cdn.staticfile.org/jquery/2.1.1-rc2/jquery.min.js"></script>
+    <script src="http://cdn.staticfile.org/twitter-bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script src="http://cdn.staticfile.org/prettify/r298/prettify.min.js"></script>
+    <script src="http://g.tbcdn.cn/kissy/k/1.4.8/seed-min.js" data-config="{combine:true}"></script>
+  </head>
+  <body data-spy="scroll" data-target=".bs-docs-sidebar">
+    <div id="header"><a href="http://docs.kissyui.com/" class="logo">kissy</a>
+      <nav><a href="http://docs.kissyui.com/1.4/docs/html/coms.html">优秀组件推荐</a></nav>
+    </div>
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span3 bs-docs-sidebar">
+          <ul data-spy="affix" data-offset-top="0" class="nav nav-list bs-docs-sidenav"></ul>
+        </div>
+        <div class="span9 bs-docs-content">
+          <h1 data-id="undefined" class="title">layer-anim</h1>
+          <p class="author-wrapper"><span>组件有问题？旺旺联系作者：</span><a href="https://github.com/agu" target="_blank" data-name="阿古" class="author"><img src="https://avatars.githubusercontent.com/u/859087?v=2&amp;s=60" alt="阿古"></a><span class="author-name">阿古</span>
+          </p>
+          <div class="common-link"><a href="../demo/index.html" target="_blank" class="demo">示例</a><a href="https://github.com/kissygalleryteam/layer-anim" target="_blank" class="source">源码</a></div>
+          <p class="com-info"><span class="info-label">View</span><span data-com="layer-anim" class="J_View">1538</span></p>
+          <p class="com-info"><span class="info-label">kissy版本</span><span>1.4.X</span>
+          </p><h1 id="-layeranim-">分层动画组件（LayerAnim）</h1>
+<p>（作者：阿古，版本：1.1）</p>
+<p>LayerAnim是一个专业级javascript动画组件，基于<a href="http://www.greensock.com">GreenSock JS</a>动画库开发。</p>
+<h2 id="-features-">功能（Features）</h2>
+<ul>
+<li>创建分层动画（与Flash类似）</li>
+<li>随意定制各个分层动画的播放顺序</li>
+<li>支持无限重复播放动画，甚至以相反顺序重复播放</li>
+<li>精确的回放控制（如：反向播放、重新播放、从特定时间点开始播放等）</li>
+<li>支持CSS 3（如：rotation）</li>
+<li>支持延迟播放动画</li>
+<li>多种可配置的过渡效果（easing）</li>
+<li>自定义各浏览器的优雅降级</li>
+<li>动态添加/删除动画</li>
+<li>兼容所有浏览器（包括古老的IE6）</li>
+<li>简单的配置参数（易于学习、易于使用）</li>
+</ul>
+<h2 id="-">演示</h2>
+<p><a href="http://gallery.kissyui.com/layer-anim/1.1/demo/index.html">查看Demo</a></p>
+<h2 id="-broswer-support-">浏览器兼容性（Broswer Support）</h2>
+<p>兼容所有主流浏览器：</p>
+<ul>
+<li>Chrome</li>
+<li>InternetExplorer（包括IE 6）</li>
+<li>Firefox</li>
+<li>Opera</li>
+<li>Safari</li>
+</ul>
+<h2 id="-">依赖</h2>
+<ul>
+<li>KISSY 1.3.0+</li>
+</ul>
+<h2 id="-">使用手册</h2>
+<h3 id="-">创建动画</h3>
+<p>JS动画的原理是在很短的时间间隔内，连续修改DOM节点的CSS属性，肉眼看上去，即形成动画。</p>
+<p>通常，动画是基于DOM节点的，这里，我们先创建一个DOM节点。</p>
+<pre><code class="lang-javascript">var nodeExample = KISSY.DOM.create(&quot;&lt;span style=&#39;position: absolute; left: 0; top: 0;&#39;&gt;这是一个动画节点&lt;/span&gt;&quot;);
+KISSY.DOM.append(nodeExample, &quot;body&quot;);
+</code></pre>
+<p>该DOM节点绝对定位在页面的左上角，坐标(0, 0)。下面我们创建一个动画，将其移动到坐标(200, 200)。</p>
+<pre><code class="lang-javascript">KISSY.use(&quot;kg/layer-anim/2.0.0/&quot;, function(S, LayerAnim)
+{
+    // 创建动画
+    new LayerAnim(
+    {
+        node: nodeExample,  // 动画DOM节点，可使用“选择符”（支持的选择符请参考KISSY DOM文档）或原生DOM节点
+        to:  // 动画结束值，即动画结束时的CSS属性值
+        {
+            left: 200,
+            top: 200
+        },
+        duration: 1  // 动画时长（单位：秒）
+    }).run();  // 播放动画
+});
+</code></pre>
+<p>调用run()方法播放该动画，可以看到DOM节点从坐标(0, 0)移动到了坐标(200, 200)，动画时长为1秒。</p>
+<p>node配置参数也支持DOM节点列表，例如：</p>
+<pre><code class="lang-javascript">KISSY.use(&quot;kg/layer-anim/2.0.0/&quot;, function(S, LayerAnim)
+{
+    // 创建动画
+    new LayerAnim(
+    {
+        node: KISSY.DOM.query(&quot;.example&quot;),  // 动画DOM节点列表
+        to:
+        {
+            left: 200,
+            top: 200
+        },
+        duration: 1
+    }).run();
+});
+</code></pre>
+<p>播放该动画，<code>class=&quot;example&quot;</code>的所有DOM节点都会移动到坐标(200, 200)，动画时长为1秒。</p>
+<p>另外，node配置参数还支持任意JS对象，例如：</p>
+<pre><code class="lang-javascript">KISSY.use(&quot;kg/layer-anim/2.0.0/&quot;, function(S, LayerAnim)
+{
+    var obj =
+    {
+        propA: 0
+    };
+    new LayerAnim(
+    {
+        node: obj,  // 动画JS对象
+        to:  // 动画结束值
+        {
+            propA: 100
+        },
+        duration: 1
+    }).run();
+});
+</code></pre>
+<p>播放动画，<code>obj.propA</code>会在1秒内，从0变为100。</p>
+<h3 id="-">动画回放控制</h3>
+<p>通过LayerAnim提供的方法，我们可以对动画的播放过程进行精确控制，暂停、继续、跳转，甚至反向播放。具体请参考“开发接口（API）”。</p>
+<p>例如，从指定时间点开始播放动画。</p>
+<pre><code class="lang-javascript">KISSY.use(&quot;kg/layer-anim/2.0.0/&quot;, function(S, LayerAnim)
+{
+    // 创建动画
+    var anim = new LayerAnim(...);
+    // 从1秒位置开始播放动画
+    anim.run(1);  // 与anim.seek(1).run()效果相同
+});
+</code></pre>
+<h3 id="-from-">设置动画起始值（<code>from</code>参数）</h3>
+<p>上面的动画是从DOM节点的当前位置(0, 0)开始移动的。我们还可以通过<code>from</code>配置参数设置动画的起始值。</p>
+<p>例如，将DOM节点从坐标(10, 10)移动到坐标(200, 200)。</p>
+<pre><code class="lang-javascript">KISSY.use(&quot;kg/layer-anim/2.0.0/&quot;, function(S, LayerAnim)
+{
+    // 创建动画
+    new LayerAnim(
+    {
+        node: nodeExample,  // 动画DOM节点，可使用“选择符”（支持的选择符请参考KISSY DOM文档）或原生DOM节点
+        from:  // 动画起始值，即动画初始时的CSS属性值
+        {
+            left: 10,
+            top: 10
+        },
+        to:  // 动画结束值，即动画结束时的CSS属性值
+        {
+            left: 200,
+            top: 200
+        },
+        duration: 1  // 动画时长（单位：秒）
+    }).run();  // 播放动画
+});
+</code></pre>
+<p>动画播放时，可以看到DOM节点从坐标(10, 10)移动到了坐标(200, 200)。</p>
+<p>更为方便的是，<code>to</code>参数可以不设置，这样，DOM节点会从<code>from</code>指定的位置移动到当前的位置。</p>
+<pre><code class="lang-javascript">KISSY.use(&quot;kg/layer-anim/2.0.0/&quot;, function(S, LayerAnim)
+{
+    // 创建动画
+    new LayerAnim(
+    {
+        node: nodeExample,  // 动画DOM节点，可使用“选择符”（支持的选择符请参考KISSY DOM文档）或原生DOM节点
+        from:  // 动画起始值，即动画初始时的CSS属性值
+        {
+            left: 200,
+            top: 200
+        },
+        duration: 1  // 动画时长（单位：秒）
+    }).run();  // 播放动画
+});
+</code></pre>
+<p>动画播放时，可以看到DOM节点从坐标(200, 200)移动到了坐标(0, 0)，即当前的位置。</p>
+<h3 id="-easing-">平滑过渡效果（<code>easing</code>参数）</h3>
+<p>在动画的起始和结束阶段，可以显示各种过渡效果，这些效果可通过<code>easing</code>参数进行配置。例如，在动画结束阶段，显示弹跳效果，如下：</p>
+<pre><code class="lang-javascript">KISSY.use(&quot;kg/layer-anim/2.0.0/&quot;, function(S, LayerAnim)
+{
+    // 创建动画
+    new LayerAnim(
+    {
+        node: nodeExample,  // 动画DOM节点，可使用“选择符”（支持的选择符请参考KISSY DOM文档）或原生DOM节点
+        to:  // 动画结束值，即动画结束时的CSS属性值
+        {
+            left: 200,
+            top: 200
+        },
+        easing: &quot;Bounce.easeOut&quot;,  // 平滑过渡效果
+        duration: 1  // 动画时长（单位：秒）
+    }).run();  // 播放动画
+});
+</code></pre>
+<p>支持的平滑过渡效果可参考“开发接口（API）”中的配置参数<code>Easing</code>。</p>
+<h3 id="-delay-">延迟播放动画（<code>delay</code>参数）</h3>
+<p>有时，我们需要延迟一段时间，再开始播放动画。此时，可以使用<code>delay</code>参数。</p>
+<pre><code class="lang-javascript">KISSY.use(&quot;kg/layer-anim/2.0.0/&quot;, function(S, LayerAnim)
+{
+    // 创建动画
+    new LayerAnim(
+    {
+        node: nodeExample,  // 动画DOM节点，可使用“选择符”（支持的选择符请参考KISSY DOM文档）或原生DOM节点
+        to:  // 动画结束值，即动画结束时的CSS属性值
+        {
+            left: 200,
+            top: 200
+        },
+        delay: 0.5,  // 延迟播放时间（单位：秒）
+        duration: 1  // 动画时长（单位：秒）
+    }).run();  // 播放动画
+});
+</code></pre>
+<p>上例设置动画延迟半秒再开始播放。</p>
+<h3 id="-repeat-">重复播放动画（<code>repeat</code>参数）</h3>
+<p>如果想反复播放同一动画，可通过<code>repeat</code>参数实现。例如：</p>
+<pre><code class="lang-javascript">KISSY.use(&quot;kg/layer-anim/2.0.0/&quot;, function(S, LayerAnim)
+{
+    // 创建动画
+    new LayerAnim(
+    {
+        node: nodeExample,  // 动画DOM节点，可使用“选择符”（支持的选择符请参考KISSY DOM文档）或原生DOM节点
+        to:  // 动画结束值，即动画结束时的CSS属性值
+        {
+            left: 200,
+            top: 200
+        },
+        repeat: 1,  // 首次播放后的重复次数
+        duration: 1  // 动画时长（单位：秒）
+    }).run();  // 播放动画
+});
+</code></pre>
+<p>上例中，<code>repeat: 1</code>表示动画播放完毕后，再重复一次。如果想无限次反复播放，设置repeat为-1即可。</p>
+<h3 id="-repeatdelay-">重复播放延迟（<code>repeatDelay</code>参数）</h3>
+<p>重复播放动画时，还可设置每次重复播放时的延迟时间，例如：</p>
+<pre><code class="lang-javascript">KISSY.use(&quot;kg/layer-anim/2.0.0/&quot;, function(S, LayerAnim)
+{
+    // 创建动画
+    new LayerAnim(
+    {
+        node: nodeExample,  // 动画DOM节点，可使用“选择符”（支持的选择符请参考KISSY DOM文档）或原生DOM节点
+        to:  // 动画结束值，即动画结束时的CSS属性值
+        {
+            left: 200,
+            top: 200
+        },
+        repeat: 1,  // 首次播放后的重复次数
+        repeatDelay: 0.4,  // 每次重复播放时的延迟时间（单位：秒）
+        duration: 1  // 动画时长（单位：秒）
+    }).run();  // 播放动画
+});
+</code></pre>
+<p>播放该动画，可以看到，第2次播放动画前，延迟了0.4秒才开始播放。</p>
+<h3 id="-yoyo-">反向重复播放（<code>yoyo</code>参数）</h3>
+<p>“反向重复播放”是指，每次重复播放时，以相反顺序播放（即上次播放顺序的反序）。</p>
+<pre><code class="lang-javascript">KISSY.use(&quot;kg/layer-anim/2.0.0/&quot;, function(S, LayerAnim)
+{
+    // 创建动画
+    new LayerAnim(
+    {
+        node: nodeExample,  // 动画DOM节点，可使用“选择符”（支持的选择符请参考KISSY DOM文档）或原生DOM节点
+        to:  // 动画结束值，即动画结束时的CSS属性值
+        {
+            left: 200,
+            top: 200
+        },
+        repeat: 1,  // 首次播放后的重复次数
+        yoyo: true,  // 重复播放时，是否以相反顺序播放（每次都与上次播放顺序相反）
+        duration: 1  // 动画时长（单位：秒）
+    }).run();  // 播放动画
+});
+</code></pre>
+<p>动画播放时，可以看到DOM节点从坐标(0, 0)移动到了坐标(200, 200)，之后又从坐标(200, 200)回到了坐标(0, 0)。</p>
+<h3 id="-degrade-">浏览器降级设置（<code>degrade</code>参数）</h3>
+<p>某些浏览器（如IE 6）中，复杂动画的显示效果可能不尽如意，需要进行降级。这时，可通过<code>degrade</code>参数，设置动画在特定浏览器下不显示。</p>
+<p><strong>注意</strong>：“不显示”仅仅指不显示动画。为了确保所有浏览器下的样式一致，动画DOM节点的CSS属性会立即设置为结束值。</p>
+<p>例如，设置IE 8以上浏览器（包括IE 8）才显示动画，代码如下：</p>
+<pre><code class="lang-javascript">KISSY.use(&quot;kg/layer-anim/2.0.0/&quot;, function(S, LayerAnim)
+{
+    // 创建动画
+    new LayerAnim(
+    {
+        node: nodeExample,  // 动画DOM节点，可使用“选择符”（支持的选择符请参考KISSY DOM文档）或原生DOM节点
+        to:  // 动画结束值，即动画结束时的CSS属性值
+        {
+            left: 200,
+            top: 200
+        },
+        degrade:  // 降级设置
+        {
+            ie: 7  // IE 8以上（包括IE 8）才显示该动画（其它浏览器不受约束）
+        },
+        duration: 1  // 动画时长（单位：秒）
+    }).run();  // 播放动画
+});
+</code></pre>
+<p>由于未设置针对其它浏览器的降级，因此，上面的动画只在IE 6、7下不显示。</p>
+<p><code>degrade</code>所支持的浏览器名称可查看<a href="http://docs.kissyui.com/docs/html/api/core/ua/index.html">KISSY UA组件说明</a>。</p>
+<h3 id="-">同时播放一组动画</h3>
+<p>下面，我们要创建一组动画（即分层动画），其中包含多个动画，动画之间可以设置一定的播放次序。</p>
+<p>所谓“同时播放”，即所有动画同时开始播放，也是默认的动画播放次序。将配置参数改为数组即可，例如：</p>
+<pre><code class="lang-javascript">KISSY.use(&quot;kg/layer-anim/2.0.0/, dom&quot;, function(S, LayerAnim, DOM)
+{
+    // 创建动画DOM节点
+    var nodeA = DOM.create(&quot;&lt;span style=&#39;position: absolute; left: 0; top: 0;&#39;&gt;动画节点A&lt;/span&gt;&quot;);
+    DOM.append(nodeA, &quot;body&quot;);
+    var nodeB = DOM.create(&quot;&lt;span style=&#39;position: absolute; left: 100px; top: 0;&#39;&gt;动画节点B&lt;/span&gt;&quot;);
+    DOM.append(nodeB, &quot;body&quot;);
+    // 创建动画
+    new LayerAnim(
+    [
+        {
+            node: nodeA,  // 动画DOM节点，可使用“选择符”（支持的选择符请参考KISSY DOM文档）或原生DOM节点
+            to:  // 动画结束值，即动画结束时的CSS属性值
+            {
+                left: 0,
+                top: 200
+            },
+            duration: 1  // 动画时长（单位：秒）
+        },
+        {
+            node: nodeB,  // 动画DOM节点，可使用“选择符”（支持的选择符请参考KISSY DOM文档）或原生DOM节点
+            to:  // 动画结束值，即动画结束时的CSS属性值
+            {
+                left: 100,
+                top: 200
+            },
+            duration: 1  // 动画时长（单位：秒）
+        }
+    ]).run();  // 播放动画
+});
+</code></pre>
+<p>上面的代码创建了两个动画，分别将DOM节点nodeA从坐标(0, 0)移动到坐标(0, 200)，nodeB从坐标(100, 0)移动到坐标(100, 200)，两个节点同时移动。</p>
+<h3 id="-">顺序播放一组动画</h3>
+<p>所谓“顺序播放”，即上一动画播放完毕后，才开始播放下一动画。例如：</p>
+<pre><code class="lang-javascript">KISSY.use(&quot;kg/layer-anim/2.0.0/, dom&quot;, function(S, LayerAnim, DOM)
+{
+    // 创建动画DOM节点
+    var nodeA = DOM.create(&quot;&lt;span style=&#39;position: absolute; left: 0; top: 0;&#39;&gt;动画节点A&lt;/span&gt;&quot;);
+    DOM.append(nodeA, &quot;body&quot;);
+    var nodeB = DOM.create(&quot;&lt;span style=&#39;position: absolute; left: 100px; top: 0;&#39;&gt;动画节点B&lt;/span&gt;&quot;);
+    DOM.append(nodeB, &quot;body&quot;);
+    var nodeC = DOM.create(&quot;&lt;span style=&#39;position: absolute; left: 200px; top: 0;&#39;&gt;动画节点C&lt;/span&gt;&quot;);
+    DOM.append(nodeC, &quot;body&quot;);
+    // 创建动画
+    new LayerAnim(
+    [
+        {  // 动画A
+            node: nodeA,  // 动画DOM节点，可使用“选择符”（支持的选择符请参考KISSY DOM文档）或原生DOM节点
+            to:  // 动画结束值，即动画结束时的CSS属性值
+            {
+                left: 0,
+                top: 200
+            },
+            duration: 1  // 动画时长（单位：秒）
+        },
+        {  // 动画B
+            node: nodeB,  // 动画DOM节点，可使用“选择符”（支持的选择符请参考KISSY DOM文档）或原生DOM节点
+            to:  // 动画结束值，即动画结束时的CSS属性值
+            {
+                left: 100,
+                top: 200
+            },
+            align: &quot;sequence&quot;,  // 上一动画播放完再播放该动画
+            duration: 1  // 动画时长（单位：秒）
+        },
+        {  // 动画C
+            node: nodeC,  // 动画DOM节点，可使用“选择符”（支持的选择符请参考KISSY DOM文档）或原生DOM节点
+            to:  // 动画结束值，即动画结束时的CSS属性值
+            {
+                left: 200,
+                top: 200
+            },
+            duration: 1  // 动画时长（单位：秒）
+        }
+    ]).run();  // 播放动画
+});
+</code></pre>
+<p>上面的代码创建了三个动画，其中，动画B的<code>align</code>参数设置为<code>sequence</code>，表示动画B在A之后顺序播放。</p>
+<p>动画C与动画B同时开始播放。虽然动画C未设置<code>align</code>参数，但由于动画B在A之后顺序播放，因此，动画C也遵循该规则，在动画A后顺序播放。</p>
+<p>也可将动画B与动画C设置为一组，运行效果与上面的动画相同。如下：</p>
+<pre><code class="lang-javascript">new LayerAnim(
+[
+    {  // 动画A
+        node: nodeA,  // 动画DOM节点，可使用“选择符”（支持的选择符请参考KISSY DOM文档）或原生DOM节点
+        to:  // 动画结束值，即动画结束时的CSS属性值
+        {
+            left: 0,
+            top: 200
+        },
+        duration: 1  // 动画时长（单位：秒）
+    },
+    [
+        {  // 动画B
+            node: nodeB,  // 动画DOM节点，可使用“选择符”（支持的选择符请参考KISSY DOM文档）或原生DOM节点
+            to:  // 动画结束值，即动画结束时的CSS属性值
+            {
+                left: 100,
+                top: 200
+            },
+            align: &quot;sequence&quot;,  // 上一动画播放完再播放该动画
+            duration: 1  // 动画时长（单位：秒）
+        },
+        {  // 动画C
+            node: nodeC,  // 动画DOM节点，可使用“选择符”（支持的选择符请参考KISSY DOM文档）或原生DOM节点
+            to:  // 动画结束值，即动画结束时的CSS属性值
+            {
+                left: 200,
+                top: 200
+            },
+            duration: 1  // 动画时长（单位：秒）
+        }
+    ]
+]).run();
+</code></pre>
+<p>动画B与C设置为一组，该组动画与其它动画之间的播放顺序以第一个动画（即动画B）的<code>align</code>参数为准，即动画B、动画C在动画A之后播放。</p>
+<h3 id="-">更复杂的分层动画</h3>
+<p>一组动画还可以嵌套另一组动画，形成复杂的分层动画。例如：</p>
+<pre><code class="lang-javascript">    ...
+    new LayerAnim(
+    [
+        {  // 动画A
+            ...
+        },
+        [
+            {  // 动画B
+                align: &quot;sequence&quot;,  // 上一动画播放完再播放该动画
+                ...
+            },
+            {  // 动画C
+                ...
+            }
+        ],
+        {  // 动画D
+            ...
+        },
+        {  // 动画E
+            align: &quot;sequence&quot;,  // 上一动画播放完再播放该动画
+            ...
+        },
+        {  // 动画F
+            ...
+        }
+    ]);
+</code></pre>
+<p>该分层动画的播放顺序如下图所示：</p>
+<p><img src="http://img03.taobaocdn.com/tps/i3/T11AN2FfRXXXbEuTz5-275-121.png" alt="动画播放顺序"></p>
+<h3 id="-overwrite-">解决动画冲突（<code>overwrite</code>参数）</h3>
+<p>如果多个动画同时作用于同一个DOM节点，其设置的CSS属性相互冲突时，就需要设置<code>overwrite</code>参数，来处理冲突。参数取值如下：</p>
+<ul>
+<li>&quot;auto&quot;：分析当前正在播放的动画，如果发现有CSS值冲突，则覆盖该CSS值。尚未播放的动画不受影响。【默认值】</li>
+<li>&quot;all&quot;：停止与该DOM节点有关的所有动画（包括未播放的动画）</li>
+<li>&quot;none&quot;：不处理冲突</li>
+</ul>
+<pre><code class="lang-javascript">KISSY.use(&quot;kg/layer-anim/2.0.0/, dom&quot;, function(S, LayerAnim, DOM)
+{
+    // 创建动画DOM节点
+    var nodeExample = DOM.create(&quot;&lt;span style=&#39;position: absolute; left: 0; top: 0;&#39;&gt;这是一个动画节点&lt;/span&gt;&quot;);
+    DOM.append(nodeExample, &quot;body&quot;);
+    // 创建动画
+    new LayerAnim(
+    [
+        {  // 动画A
+            node: nodeExample,  // 动画DOM节点，可使用“选择符”（支持的选择符请参考KISSY DOM文档）或原生DOM节点
+            to:  // 动画结束值，即动画结束时的CSS属性值
+            {
+                left: 0,
+                top: 200
+            },
+            duration: 1  // 动画时长（单位：秒）
+        },
+        {  // 动画B
+            node: nodeExample,  // 动画DOM节点，可使用“选择符”（支持的选择符请参考KISSY DOM文档）或原生DOM节点
+            to:  // 动画结束值，即动画结束时的CSS属性值
+            {
+                left: 200,
+                top: 200
+            },
+            overwrite: &quot;all&quot;,  // 动画冲突处理方式
+            duration: 1  // 动画时长（单位：秒）
+        }
+    ]).run();  // 播放动画
+});
+</code></pre>
+<p>上面的代码中，两个动画都基于同一个DOM节点，且同时播放。由于动画B的<code>overwrite</code>参数设置为<code>all</code>，因此该动画播放时，会覆盖动画A的CSS值，最终显示的是动画B的效果，DOM节点从坐标(0, 0)移动到了坐标(200, 200)。</p>
+<h3 id="-">重复播放一组动画</h3>
+<p>重复播放一组动画时，需要将配置参数中的数组修改为对象，例如：</p>
+<pre><code class="lang-javascript">KISSY.use(&quot;kg/layer-anim/2.0.0/, dom&quot;, function(S, LayerAnim, DOM)
+{
+    // 创建动画DOM节点
+    var nodeA = DOM.create(&quot;&lt;span style=&#39;position: absolute; left: 0; top: 0;&#39;&gt;动画节点A&lt;/span&gt;&quot;);
+    DOM.append(nodeA, &quot;body&quot;);
+    var nodeB = DOM.create(&quot;&lt;span style=&#39;position: absolute; left: 100px; top: 0;&#39;&gt;动画节点B&lt;/span&gt;&quot;);
+    DOM.append(nodeB, &quot;body&quot;);
+    // 创建动画
+    new LayerAnim(
+    {
+        anims:  // 动画组
+        [
+            {  // 动画A
+                node: nodeA,  // 动画DOM节点，可使用“选择符”（支持的选择符请参考KISSY DOM文档）或原生DOM节点
+                to:  // 动画结束值，即动画结束时的CSS属性值
+                {
+                    left: 0,
+                    top: 200
+                },
+                duration: 1  // 动画时长（单位：秒）
+            },
+            {  // 动画B
+                node: nodeB,  // 动画DOM节点，可使用“选择符”（支持的选择符请参考KISSY DOM文档）或原生DOM节点
+                to:  // 动画结束值，即动画结束时的CSS属性值
+                {
+                    left: 100,
+                    top: 200
+                },
+                duration: 1  // 动画时长（单位：秒）
+            }
+        ],
+        repeat: 1,  // 首次播放后的重复次数
+        repeatDelay: 0.4,  // 每次重复播放时的延迟时间（单位：秒）
+        yoyo: true  // 重复播放时，是否以相反顺序播放（每次都与上次播放顺序相反）
+    }).run();  // 播放动画
+});
+</code></pre>
+<p>上例中，通过<code>anims</code>配置参数设置动画组，另外，使用<code>repeat</code>、<code>repeatDelay</code>、<code>yoyo</code>参数设置该动画组的重复播放配置。</p>
+<h3 id="-stagger-">间隔播放一组动画（<code>stagger</code>参数）</h3>
+<p>有时，我们需要每隔一段时间，播放一个动画。所有动画的起始值/结束值、时长均相同。这时，可使用<code>stagger</code>参数实现：</p>
+<pre><code class="lang-javascript">KISSY.use(&quot;kg/layer-anim/2.0.0/, dom&quot;, function(S, LayerAnim, DOM)
+{
+    // 创建动画DOM节点
+    var nodeExample = DOM.create(&quot;&lt;div style=&#39;position: relative; height: 300px;&#39;&gt;&quot; +
+        &quot;&lt;span style=&#39;position: absolute; left: 0; top: 0;&#39;&gt;nodeA&lt;/span&gt;&quot; +
+        &quot;&lt;span style=&#39;position: absolute; left: 20px; top: 0;&#39;&gt;nodeB&lt;/span&gt;&quot; +
+        &quot;&lt;span style=&#39;position: absolute; left: 40px; top: 0;&#39;&gt;nodeC&lt;/span&gt;&quot; +
+        &quot;&lt;/div&gt;&quot;);
+    DOM.append(nodeExample, &quot;body&quot;);
+    // 创建动画
+    new LayerAnim(
+    {
+        node: DOM.query(&quot;span&quot;, nodeExample),  // 动画DOM节点列表
+        to:  // 动画结束值，即动画结束时的CSS属性值
+        {
+            top: 150
+        },
+        stagger: 0.3,  // 每个动画间隔播放的时间（单位：秒）
+        duration: 1  // 动画时长（单位：秒）
+    }).run();
+});
+</code></pre>
+<p>播放该动画，可以看到，nodeA开始从坐标(0, 0)移动到坐标(0, 150)，0.3秒时，nodeB开始从坐标(20, 0)移动到坐标(20, 150)，0.6秒时，nodeC开始从坐标(40, 0)移动到坐标(40, 150)。nodeA、nodeB、nodeC之间开始播放的时间相隔0.3秒。</p>
+<h2 id="-api-">开发接口（API）</h2>
+<p>创建LayerAnim对象：</p>
+<pre><code class="lang-javascript">KISSY.use(&quot;kg/layer-anim/2.0.0/&quot;, function(S, LayerAnim)
+{
+    var config = /* 配置参数 */;
+    new LayerAnim(config);
+});
+</code></pre>
+<h3 id="-">配置参数</h3>
+<ul>
+<li><p>node {String / HTMLNode / [HTMLNode]}</p>
+<p> 动画DOM节点，可使用“选择符”（支持的选择符请参考KISSY <a href="http://docs.kissyui.com/docs/html/api/core/dom/selector.html">DOM选择符</a>）或原生DOM节点</p>
+</li>
+<li><p>from {Object}</p>
+<p> 动画起始值，即动画初始时的CSS属性值。例如：</p>
+</li>
+</ul>
+<pre><code class="lang-javascript">{
+    left: 0,
+    top: 0
+}
+</code></pre>
+<ul>
+<li><p>to {Object}</p>
+<p> 动画结束值，即动画结束时的CSS属性值。<code>from</code>与<code>to</code>必须设置其一，或同时设置。</p>
+</li>
+<li><p>duration {Number}</p>
+<p> 动画时长（单位：秒）。</p>
+</li>
+<li><p>easing {String} 【可选】</p>
+<p> 平滑过渡效果，取值如下：</p>
+<pre><code>* &quot;Back.easeIn&quot;：动画起始时，显示缩进效果
+* &quot;Back.easeOut&quot;：动画结束时，显示缩进效果
+* &quot;Back.easeInOut&quot;：动画起始和结束时，都显示缩进效果，即Back.easeIn + Back.easeOut
+* &quot;Bounce.easeIn&quot;：动画起始时，显示跳动效果
+* &quot;Bounce.easeOut&quot;：动画结束时，显示跳动效果
+* &quot;Bounce.easeInOut&quot;：动画起始和结束时，都显示跳动效果，即Bounce.easeIn + Bounce.easeOut
+* &quot;Circ.easeIn&quot;：动画起始时，急剧改变运动速度
+* &quot;Circ.easeOut&quot;：动画结束时，急剧改变运动速度
+* &quot;Circ.easeInOut&quot;：动画起始和结束时，都急剧改变运动速度，即Circ.easeIn + Circ.easeOut
+* &quot;Elastic.easeIn&quot;：动画起始时，显示类似橡皮筋的弹跳效果
+* &quot;Elastic.easeOut&quot;：动画结束时，显示类似橡皮筋的弹跳效果
+* &quot;Elastic.easeInOut&quot;：动画起始和结束时，都显示类似橡皮筋的弹跳效果，即Elastic.easeIn + Elastic.easeOut
+* &quot;Power1.easeIn&quot;：动画起始时，显示缓动效果（加速度为线性）
+* &quot;Power1.easeOut&quot;：动画结束时，显示缓动效果（加速度为线性）【默认值】
+* &quot;Power1.easeInOut&quot;：动画起始和结束时，都显示缓动效果，即Power1.easeIn + Power1.easeOut
+* &quot;Power2.easeIn&quot;：动画起始时，显示缓动效果（加速度稍强）
+* &quot;Power2.easeOut&quot;：动画结束时，显示缓动效果（加速度稍强）
+* &quot;Power2.easeInOut&quot;：动画起始和结束时，都显示缓动效果，即Power2.easeIn + Power2.easeOut
+* &quot;Power3.easeIn&quot;：动画起始时，显示缓动效果（加速度更强）
+* &quot;Power3.easeOut&quot;：动画结束时，显示缓动效果（加速度更强）
+* &quot;Power3.easeInOut&quot;：动画起始和结束时，都显示缓动效果，即Power3.easeIn + Power3.easeOut
+* &quot;Power4.easeIn&quot;：动画起始时，显示缓动效果（加速度极强）
+* &quot;Power4.easeOut&quot;：动画结束时，显示缓动效果（加速度极强）
+* &quot;Power4.easeInOut&quot;：动画起始和结束时，都显示缓动效果，即Power4.easeIn + Power4.easeOut
+* &quot;Expo.easeIn&quot;：动画起始时，显示缓动效果（加速度最强）
+* &quot;Expo.easeOut&quot;：动画结束时，显示缓动效果（加速度最强）
+* &quot;Expo.easeInOut&quot;：动画起始和结束时，都显示缓动效果，即Power5.easeIn + Power5.easeOut
+* &quot;SteppedEase&quot;：如果希望将动画分为固定的几步完成，可以使用SteppedEase。例如：```easing: &quot;SteppedEase.config(5)&quot;```，让动画分为5步完成，每步的CSS值将根据```from```和```to```值计算
+</code></pre></li>
+<li><p>delay {Number} 【可选】</p>
+<p> 延迟播放时间（单位：秒）。</p>
+</li>
+<li><p>align {String} 【可选】</p>
+<p> 播放次序。取值如下：</p>
+<pre><code>* &quot;normal&quot;：与其它动画同时播放。【默认值】
+* &quot;sequence&quot;：顺序播放，即上一动画播放完再播放该动画。
+</code></pre></li>
+<li><p>overwrite {String}</p>
+<p> 当多个动画同时作用于同一个DOM节点，其设置的CSS属性相互冲突时，解决冲突处理方式。取值如下：</p>
+<pre><code>* &quot;auto&quot;：分析当前正在播放的动画，如果发现有CSS值冲突，则覆盖该CSS值。尚未播放的动画不受影响。【默认值】
+* &quot;all&quot;：停止与该DOM节点相关的所有动画（包括未播放的动画）
+* &quot;none&quot;：不处理冲突
+</code></pre></li>
+<li><p>repeat {Number} 【可选】</p>
+<p> 首次播放后的重复次数【默认：0】。例如：<code>repeat: 1</code>表示动画总共播放2次。
+ 如果要无限重复，设置<code>repeat: -1</code>。</p>
+</li>
+<li><p>repeatDelay {Number} 【可选】</p>
+<p> 每次重复播放时的延迟时间（单位：秒）。</p>
+</li>
+<li><p>yoyo {Boolean} 【可选】</p>
+<p> 重复播放时，是否以相反顺序播放（每次都与上次播放顺序相反）【默认：false】。</p>
+</li>
+<li><p>degrade {Object} 【可选】</p>
+<p> 浏览器降级设置。例如：</p>
+<pre><code class="lang-javascript">{
+      ie: 7  // IE 8以上（包括IE 8）才显示该动画
+}
+</code></pre>
+</li>
+</ul>
+<h3 id="-">方法</h3>
+<ul>
+<li><p>run(position)</p>
+<p> 播放动画。无论动画是否播放完，默认都从头开始播放。</p>
+<ul>
+<li><p>参数：</p>
+<p> position {Number}：起始播放的时间点，单位：秒【可选参数，默认：0（从起始位置播放动画）】</p>
+</li>
+<li><p>返回值：</p>
+<p> {LayerAnim} this对象，以支持链式调用。</p>
+</li>
+</ul>
+</li>
+<li><p>runReverse()</p>
+<p> 反向播放动画。如果动画尚未播放，则调用该方法没有任何效果。</p>
+<ul>
+<li><p>返回值：</p>
+<p> {LayerAnim} this对象，以支持链式调用。</p>
+</li>
+</ul>
+</li>
+<li><p>pause()</p>
+<p> 暂停播放动画。动画暂停后，可调用resume方法继续播放。</p>
+<ul>
+<li><p>返回值：</p>
+<p> {LayerAnim} this对象，以支持链式调用。</p>
+</li>
+</ul>
+</li>
+<li><p>resume()</p>
+<p> 从当前播放位置继续播放动画。如果动画已播放完，调用该方法没有任何效果。</p>
+<ul>
+<li><p>返回值：</p>
+<p> {LayerAnim} this对象，以支持链式调用。</p>
+</li>
+</ul>
+</li>
+<li><p>stop(reset)</p>
+<p> 停止播放动画，并跳转到初始位置。</p>
+<ul>
+<li><p>参数：</p>
+<p> reset {Boolean}：是否将动画起始值（from）或结束值（to）重置为当前的CSS值。如果不想从DOM节点的当前值重新播放动画，请设置为false。【可选参数，默认：true】</p>
+</li>
+<li><p>返回值：</p>
+<p> {LayerAnim} this对象，以支持链式调用。</p>
+</li>
+</ul>
+</li>
+<li><p>seek(position)</p>
+<p> 跳转到指定位置，并暂停播放。</p>
+<ul>
+<li><p>参数：</p>
+<p> position {Number}：跳转到的时间点，单位：秒。【可选参数，默认：0（起始位置）】</p>
+</li>
+<li><p>返回值：</p>
+<p> {LayerAnim} this对象，以支持链式调用。</p>
+</li>
+</ul>
+</li>
+<li><p>end()</p>
+<p> 跳转到动画结束时刻。该方法同时将CSS样式设置为结束值。</p>
+<ul>
+<li><p>返回值：</p>
+<p> {LayerAnim} this对象，以支持链式调用。</p>
+</li>
+</ul>
+</li>
+<li><p>kill()</p>
+<p> 停止动画并释放相关资源，以便垃圾回收。如果动画不再播放，调用该方法可以减少内存等资源的占用。</p>
+<ul>
+<li><p>返回值：</p>
+<p> {LayerAnim} this对象，以支持链式调用。</p>
+</li>
+</ul>
+</li>
+<li><p>add(config)</p>
+<p> 向分层动画中添加动画。动画被添加到最后位置。</p>
+<ul>
+<li><p>参数：</p>
+<p> config {Object}：要添加的动画配置参数，具体请参考配置参数。</p>
+</li>
+<li><p>返回值：</p>
+<p> {LayerAnim} this对象，以支持链式调用。</p>
+</li>
+</ul>
+</li>
+<li><p>clear()</p>
+<p> 删除所有分层动画。</p>
+<ul>
+<li><p>返回值：</p>
+<p> {LayerAnim} this对象，以支持链式调用。</p>
+</li>
+</ul>
+</li>
+<li><p>rerun()【已废弃，使用run方法代替】</p>
+<p> 重新播放动画。无论动画当前播放到什么位置，该方法都从头开始播放动画。</p>
+<ul>
+<li><p>返回值：</p>
+<p> {LayerAnim} this对象，以支持链式调用。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="-">事件</h3>
+<ul>
+<li><p>start</p>
+<p> 动画从头开始播放时，触发该事件。如果反复从头播放动画，则该事件会触发多次。</p>
+</li>
+<li><p>update</p>
+<p> 每帧动画更新时，触发该事件。动画播放时，会不断触发该事件。</p>
+</li>
+<li><p>end</p>
+<p> 动画播放结束时，触发该事件。</p>
+</li>
+</ul>
+
+          <div style="display:none;"><script type="text/javascript" src="http://tajs.qq.com/stats?sId=36378479" charset="UTF-8"></script></div>
+          <script src="http://docs.kissyui.com/1.4/source/guideline/templates/assets/com.js"></script>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
